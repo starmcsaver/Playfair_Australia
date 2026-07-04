@@ -262,7 +262,7 @@ footer a {
   font-weight:600;
   text-transform:uppercase;
   letter-spacing:.14em;
-  color:var(--accent-light);
+  color:var(--gold);
   margin-bottom:16px
 }
 .foot-col a{display:block;font-size:15px;color:rgba(255,255,255,.85);margin-bottom:10px;transition:color .2s;cursor:pointer}
