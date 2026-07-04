@@ -1,0 +1,1332 @@
+:root{--accent:#6B2C91;--accent-deep:#4A1D63;--accent-light:#9D5FC4;--lav:#F2EEF7;--gold:#FDB813;--gold-deep:#E59500;--ink:#1C1B22;--body:#4B4955;--line:#E7E3EC;--paper:#FFFFFF;}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Poppins',sans-serif;color:var(--body);background:var(--paper);line-height:1.65;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+
+.wrap{
+  max-width: 92%;
+  width: 1440px !important;
+  margin:0 auto;
+  padding:0 48px !important;
+}
+
+body {
+  font-size: 18px !important; /* Gipadako gikan sa default para daling basahon */
+}
+.section{
+  padding:100px 0
+}
+.section.lav{
+  background:var(--lav)
+}
+
+.eyebrow{
+  font-size:1000px;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  color:var(--accent);
+  margin-bottom:18px
+}
+
+h1{font-size:62px;font-weight:800;line-height:1.06;letter-spacing:-1.5px;color:var(--ink)}
+h2{font-size:40px;font-weight:800;line-height:1.12;letter-spacing:-.8px;color:var(--ink)}
+h3{font-size:22px;font-weight:700;line-height:1.3;color:var(--ink)}
+.hl{color:var(--accent)}
+.lead{font-size:20px;font-weight:400;color:var(--body)}
+p{max-width:64ch}
+.center-head{max-width:760px;margin:0 auto;text-align:center}
+.center-head .lead{margin-left:auto;margin-right:auto;max-width:62ch}
+.btn{display:inline-block;font-size:15px;font-weight:700;padding:14px 28px;border-radius:40px;cursor:pointer;border:1.5px solid transparent;transition:transform .2s,box-shadow .2s,background .2s,border-color .2s,color .2s}
+.btn-fill{background:var(--accent);color:var(--gold)}
+.btn-fill:hover{background:var(--accent-deep);color:var(--gold);transform:translateY(-2px);box-shadow:0 10px 24px rgba(107,44,145,.25)}
+.btn-gold{background:var(--gold);color:var(--ink)}
+.btn-gold:hover{background:var(--gold-deep);transform:translateY(-2px);box-shadow:0 10px 24px rgba(229,149,0,.25)}
+.btn-ghost{background:transparent;color:var(--accent);border-color:var(--accent)}
+.btn-ghost:hover{background:var(--accent);color:var(--gold);transform:translateY(-2px)}
+.btn-ghost-light{background:transparent;color:#fff;border-color:rgba(255,255,255,.6);font-weight:600}
+.btn-ghost-light:hover{border-color:#fff;background:rgba(255,255,255,.1);transform:translateY(-2px)}
+.btns{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
+.btns.center{justify-content:center}
+nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+
+.nav-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  height:72px
+}
+.logo img{
+  height:30px;
+  width:auto;
+  display:block
+}
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:22px;
+  list-style:none
+}
+
+.nav-links a{
+  font-size:14.5px;
+  font-weight:500;
+  color:var(--body);
+  transition:color .2s
+}
+
+.nav-links a:hover{
+  color:var(--accent)
+}
+
+.nav-links a.active{
+  color:var(--accent);
+  font-weight:600
+}
+
+.nav-links .btn{
+  padding:11px 22px;
+  color:var(--gold)
+}
+
+.nav-links .btn.active{
+  color:var(--gold)
+}
+
+nav {
+  padding: 24px 0 !important; 
+}
+
+.nav-links a {
+  font-size: 18px !important; 
+  font-weight: 500 !important; 
+}
+
+
+.logo img {
+  height: 45px !important; 
+  width: auto !important;
+}
+
+.burger{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px}
+.burger span{width:24px;height:2px;background:var(--ink);border-radius:2px;transition:.3s}
+.hero{position:relative;min-height:calc(100vh - 72px);display:flex;align-items:center;color:#fff;overflow:hidden;text-align:center}
+.hero-bg{position:absolute;inset:0;background:var(--accent-deep);z-index:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 40%;transform:scaleX(-1)}
+.hero-overlay{position:absolute;inset:0;z-index:1;background:rgba(24,12,34,.62)}
+.hero-content{position:relative;z-index:2;max-width:1000px;margin:0 auto;padding:120px 0}
+.greet{font-size:25px;font-weight:600;color:#fff;margin-bottom:24px}
+.greet b{color:var(--gold);font-weight:700}
+.hero-content h1{color:#fff;max-width:18ch;margin:0 auto}
+.uline{text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:7px;text-decoration-thickness:5px}
+.hero-content .lead{color:rgba(255,255,255,.92);margin:26px auto 0;font-size:21px;max-width:62ch}
+.stats{background:var(--accent-deep);color:#fff}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;text-align:center}
+.stat .num{font-size:42px;font-weight:800;letter-spacing:-1px;line-height:1;color:#fff}
+.stat .num b{color:var(--gold);font-weight:800}
+.stat .lbl{font-size:13px;font-weight:500;color:rgba(255,255,255,.72);margin-top:12px}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.media{border-radius:18px;overflow:hidden;aspect-ratio:4/3;background:var(--accent-deep)}
+.media img{width:100%;height:100%;object-fit:cover}
+.article{max-width:760px;margin:0 auto}
+.article p{max-width:none;margin-bottom:18px;font-size:17px}
+.article h3{margin:28px 0 10px}
+.blocks{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:46px;text-align:left}
+.block{background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px 26px;transition:transform .25s,box-shadow .25s}
+.block:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(107,44,145,.10)}
+.block .t{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin-bottom:10px}
+.block h3{margin-bottom:8px}.block p{font-size:15px}
+.checklist{list-style:none;margin-top:18px}
+.checklist li{position:relative;padding:13px 0 13px 32px;border-top:1px solid var(--line);font-size:16.5px;color:var(--body)}
+.checklist li:first-child{border-top:none}
+.checklist li::before{content:'\2713';position:absolute;left:0;top:13px;color:var(--accent);font-weight:700}
+.vid{border-radius:16px;overflow:hidden;aspect-ratio:16/9;background:var(--accent-deep)}
+.vid iframe{width:100%;height:100%;border:0;display:block}
+.feature-quote{margin:48px auto 0;background:var(--accent);color:#fff;border-radius:22px;padding:52px 46px;max-width:920px;text-align:center}
+.feature-quote .eyebrow{color:var(--gold)}
+.feature-quote h2{color:#fff;max-width:20ch;margin:0 auto}
+.feature-quote p{color:rgba(255,255,255,.9);margin:16px auto 0;max-width:60ch}
+.figures{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:38px}
+.figure .fnum{font-size:38px;font-weight:800;color:#fff;line-height:1}
+.figure .fnum b{color:var(--gold)}
+.figure .flbl{font-size:13px;color:rgba(255,255,255,.78);margin-top:8px}
+.testi-section{background:var(--accent-deep);color:#fff}
+.testi-section .eyebrow{color:var(--gold);text-align:center}
+.testi{max-width:820px;margin:0 auto;position:relative;padding-left:20px}
+.bigmark{position:absolute;left:-16px;top:-58px;font-family:Georgia,'Times New Roman',serif;font-size:150px;line-height:1;color:var(--gold);z-index:0;pointer-events:none}
+.testi .q{position:relative;z-index:1;font-size:27px;font-weight:700;color:#fff;line-height:1.45;text-align:left;max-width:none}
+.testi .q .kw{color:var(--gold)}
+.testi .who{margin-top:26px;font-size:14px;font-weight:600;color:rgba(255,255,255,.85);text-align:left}
+.testi .who b{color:var(--gold);font-weight:700}
+.dots{display:flex;gap:10px;justify-content:flex-start;margin-top:26px}
+.dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.32);border:none;cursor:pointer;padding:0;transition:background .2s}
+.dot.active{background:var(--gold)}
+.note{font-size:13px;opacity:.7;margin-top:22px}
+.testi-section .note{color:rgba(255,255,255,.7);text-align:left}
+.subhead{font-size:12.5px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin:54px 0 0;text-align:center}
+
+.video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:24px}
+.video-card{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.video-thumb{position:relative;aspect-ratio:16/9;cursor:pointer;background:var(--accent-deep);overflow:hidden}
+.video-thumb img{width:100%;height:100%;object-fit:cover}
+.video-thumb .play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:58px;height:58px;border-radius:50%;background:rgba(255,255,255,.94);display:flex;align-items:center;justify-content:center;transition:transform .2s,background .2s}
+.video-thumb .play::before{content:'';border-style:solid;border-width:10px 0 10px 16px;border-color:transparent transparent transparent var(--accent);margin-left:3px}
+.video-thumb:hover .play{transform:translate(-50%,-50%) scale(1.08);background:var(--gold)}
+
+.video-thumb iframe{
+  width:100% !important;
+  height:100% !important;
+  position:absolute;
+  top:0;
+  left:0;
+  border:0;
+  z-index: 5;
+}
+.video-body{padding:18px 20px}.video-body h3{font-size:17px;margin-bottom:4px}.video-body p{font-size:14px}
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:24px}
+.gphoto{aspect-ratio:1/1;border-radius:14px;overflow:hidden;background:var(--accent-deep);transition:transform .3s ease,box-shadow .3s ease}
+.gphoto img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.gphoto:hover{transform:scale(1.06);box-shadow:0 18px 40px rgba(74,29,99,.30);z-index:2;position:relative}
+.gphoto:hover img{transform:scale(1.10)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:36px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:30px 28px;transition:transform .25s,box-shadow .25s,border-color .25s}
+.card:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 18px 40px rgba(107,44,145,.10)}
+.card h3{margin-bottom:10px}.card p{font-size:15.5px}
+.banner{border-radius:18px;overflow:hidden;margin-top:40px;aspect-ratio:21/9;background:var(--accent-deep)}
+.banner img{width:100%;height:100%;object-fit:cover}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:40px;text-align:left}
+.ccard{background:#fff;border:1px solid var(--line);border-radius:18px;padding:34px}
+.ccard h3{margin-bottom:10px}.ccard p{font-size:15.5px;margin-bottom:14px}
+.meta{margin-top:18px}.meta div{margin-bottom:14px}
+.meta strong{display:block;font-size:11.5px;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin-bottom:3px;font-weight:600}
+.meta a{color:var(--accent);font-weight:600}
+.field{margin-bottom:14px}
+.field label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;color:var(--ink)}
+.field input,.field textarea{width:100%;border:1.5px solid var(--line);border-radius:10px;padding:11px 14px;font-family:inherit;font-size:15px;color:var(--ink);background:var(--paper)}
+.field textarea{resize:vertical;min-height:84px}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--accent)}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;margin:4px 0 16px;color:var(--body)}
+.consent input{margin-top:4px;flex-shrink:0}
+.form-msg{font-size:14px;color:var(--accent);font-weight:600;margin-top:10px;display:none}
+.cal{margin-top:6px;border:1px solid var(--line);border-radius:14px;padding:16px}
+.cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.cal-title{font-weight:700;color:var(--ink);font-size:15px}
+.cal-nav{border:none;background:var(--lav);color:var(--accent);width:30px;height:30px;border-radius:8px;cursor:pointer;font-size:16px;font-weight:700;font-family:inherit}
+.cal-nav:hover{background:var(--accent);color:var(--gold)}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.cal-dow{font-size:11px;text-align:center;color:var(--body);font-weight:600;padding:4px 0}
+.cal-day{aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;border-radius:8px;font-size:13px;cursor:pointer;border:none;background:transparent;color:var(--ink);font-family:inherit}
+.cal-day:hover:not(:disabled){background:var(--lav)}
+.cal-day:disabled{color:#cfcad6;cursor:default}
+.cal-day.sel{background:var(--accent);color:var(--gold);font-weight:700}
+.cal-day.empty{cursor:default}
+.cal-times{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.cal-time{border:1.5px solid var(--line);background:#fff;border-radius:20px;padding:7px 14px;font-size:13px;cursor:pointer;font-family:inherit;color:var(--ink);font-weight:600}
+.cal-time:hover{border-color:var(--accent)}
+.cal-time.sel{background:var(--accent);color:var(--gold);border-color:var(--accent)}
+.cal-confirm{margin-top:14px;font-size:14px;font-weight:600;color:var(--accent);min-height:20px}
+
+footer{
+  background:var(--accent-deep);
+  color:#fff;
+  padding:80px 0 !important;
+  font-size:16px !important;
+}
+
+footer p {
+  line-height: 1.8 !important;
+}
+
+footer a {
+  font-size: 16px !important;
+  font-weight: 500 !important;
+}
+
+.foot-top{
+  display:grid;
+  grid-template-columns:1.6fr 1fr 1fr;
+  gap:40px
+}
+.foot-logo img{
+  height:30px;
+  width:auto;
+  display:block;
+  margin-bottom:16px
+}
+.foot-mission{font-size:16px;color:rgba(255,255,255,.7);max-width:34ch}
+.foot-region{font-size:13px;color:var(--gold);margin-top:16px;letter-spacing:.04em;font-weight:600}
+.foot-col h4{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.14em;color:var(--gold);margin-bottom:16px}
+.foot-col a{display:block;font-size:15px;color:rgba(255,255,255,.85);margin-bottom:10px;transition:color .2s;cursor:pointer}
+.foot-col a:hover{color:#fff}
+.foot-rule{border:none;border-top:1px solid rgba(255,255,255,.18);margin:48px 0 24px}
+.ack-block{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:22px 26px;margin-bottom:22px}
+.foot-ack{font-size:13px;color:rgba(255,255,255,.72);max-width:none;margin:0;line-height:1.7;text-align:left}
+.foot-bottom{font-size:13.5px;color:rgba(255,255,255,.6);text-align:center}
+.modal-bg{position:fixed;inset:0;background:rgba(28,27,34,.55);display:none;align-items:center;justify-content:center;z-index:200;padding:24px}
+.modal-bg.open{display:flex}
+.modal{background:#fff;border-radius:18px;max-width:560px;padding:38px;max-height:85vh;overflow:auto;position:relative}
+.modal h3{margin-bottom:14px}.modal p{font-size:14.5px;margin-bottom:12px}
+.modal .x{position:absolute;top:18px;right:20px;cursor:pointer;border:none;background:none;font-size:24px;color:var(--body);line-height:1}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+@media(max-width:980px){.stats-grid{grid-template-columns:repeat(2,1fr);gap:34px}.gallery{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:900px){
+ h1{font-size:42px}h2{font-size:30px}
+ .nav-links{position:absolute;top:72px;left:0;right:0;background:#fff;flex-direction:column;align-items:flex-start;gap:0;padding:0 32px;max-height:0;overflow:hidden;transition:max-height .3s}
+ .nav-links.open{max-height:520px;padding:18px 32px;border-bottom:1px solid var(--line)}
+ .nav-links a{padding:12px 0;width:100%}
+ .burger{display:flex}
+ .split,.blocks,.cards,.video-grid,.figures,.contact-grid{grid-template-columns:1fr;gap:24px}
+ .gallery{grid-template-columns:repeat(2,1fr)}
+ .banner{aspect-ratio:16/9}
+ .section{padding:72px 0}.hero-content{padding:80px 0}
+ .bigmark{font-size:108px;top:-40px;left:-8px}
+}
+@media(max-width:520px){h1{font-size:34px}.stats-grid{grid-template-columns:1fr}.foot-top{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.btn:hover,.card:hover,.block:hover,.gphoto:hover,.gphoto:hover img{transform:none}}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+.qgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+.qcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px;display:flex;flex-direction:column}
+.qcard .qm{color:var(--gold);font-family:Georgia,'Times New Roman',serif;font-size:48px;line-height:.5;height:24px;font-weight:700}
+.qcard p{font-size:15.5px;color:var(--ink);font-weight:500;margin:8px 0 16px;flex:1;max-width:none}
+.qcard .qa{font-size:13px;font-weight:600;color:var(--body)}
+.qcard .qa span{color:var(--accent)}
+.pull{max-width:760px;margin:56px auto 0;text-align:center}
+.pull .m{color:var(--gold);font-family:Georgia,'Times New Roman',serif;font-size:64px;line-height:.4;height:36px}
+.pull p{font-size:24px;font-weight:700;color:var(--ink);line-height:1.4;margin:0 auto;max-width:none}
+.pull .a{margin-top:18px;font-size:13px;font-weight:600;color:var(--body)}
+.pull .a span{color:var(--accent)}
+.testi-section h2{color:#fff}
+.testi-section .center-head .lead{color:rgba(255,255,255,.86)}
+.lede{font-size:26px;margin-bottom:14px}
+@media(max-width:900px){.qgrid{grid-template-columns:1fr}}
+
+.page{display:none}
+.page.active{display:block;animation:pagein .35s ease}
+@keyframes pagein{from{opacity:0}to{opacity:1}}
+#app{min-height:60vh}
+
+
+
+
+
+
+
+
+
+
+
+
+.movable.dragging{opacity:.4}
+.ph-ctrl{position:absolute;left:50%;top:10px;transform:translateX(-50%);display:flex;gap:8px;z-index:62}
+.ph-btn{font-family:inherit;font-weight:600;font-size:12px;line-height:1;color:#fff;background:rgba(28,27,34,.9);border:0;border-radius:30px;padding:9px 14px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+.ph-btn:hover{background:#000}
+.ph-btn.rm{background:rgba(179,38,30,.94)}
+.ph-btn.rm:hover{background:#8c1d17}
+body.editing .gphoto,body.editing .gfeature,body.editing .media,body.editing .banner,
+body.editing .gfeature,body.editing .media{display:none}
+
+
+@media(max-width:620px){}
+.hero{position:relative;min-height:calc(100vh - 72px);display:flex;align-items:center;text-align:center;color:#fff;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0;background:var(--accent-deep)}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 50%;filter:saturate(1.06);transform:none}
+.hero-overlay{position:absolute;inset:0;z-index:1;background:rgba(18,10,28,.34)}
+.hero-content{position:relative;z-index:2;max-width:920px;margin:0 auto;padding:118px 0;text-shadow:0 1px 2px rgba(0,0,0,.8),0 2px 12px rgba(0,0,0,.6),0 0 40px rgba(0,0,0,.4)}
+.hero-content .greet{display:inline-block;background:rgba(18,10,28,.42);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);padding:9px 22px;border-radius:40px;font-size:20px;font-weight:600;color:#fff;margin-bottom:22px}
+.hero-content .greet b{color:var(--gold);font-weight:700}
+.hero-content h1{color:#fff;font-size:60px;max-width:18ch;margin:0 auto}
+.hero-content .lead{color:#fff;margin:24px auto 0;max-width:60ch;font-size:21px;font-weight:500}
+.hero-content .btns{justify-content:center;margin-top:34px}
+.hero .btns .btn{text-shadow:none}
+.hero .btn-gold,.hero .btn-gold:hover{box-shadow:none}
+@media(max-width:900px){.hero-content{padding:84px 0}.hero-content h1{font-size:40px}}
+.marquee{overflow:hidden;background:var(--lav);padding:20px 0}
+.marquee-track{display:flex;gap:14px;width:max-content;animation:mscroll 48s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.m-ph{width:300px;height:198px;flex:0 0 auto;border-radius:14px;overflow:hidden;background:var(--accent-deep)}
+.m-ph img{width:100%;height:100%;object-fit:cover;filter:saturate(1.06) brightness(1.02)}
+@keyframes mscroll{from{transform:translateX(0)}to{transform:translateX(calc(-50% - 7px))}}
+.tstrip{background:var(--accent-deep);color:#fff;padding:30px 0}
+.tstrip-inner{display:flex;align-items:center;justify-content:center;gap:14px;text-align:center;flex-wrap:wrap}
+.tstrip-mark{font-family:Georgia,'Times New Roman',serif;font-size:50px;line-height:0;color:var(--gold);transform:translateY(8px)}
+.tstrip p{font-size:20px;font-weight:600;color:#fff;margin:0;max-width:none;transition:opacity .4s}
+.tstrip-who{font-size:13px;font-weight:600;color:var(--gold);white-space:nowrap}
+@media(max-width:620px){.tstrip p{font-size:17px}.tstrip-who{white-space:normal}}
+.plogostrip{background:var(--accent);padding:24px 0}
+.ulogos{display:flex;align-items:center;flex-wrap:nowrap;justify-content:flex-start;gap:20px;width:100%;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
+.ulogos::-webkit-scrollbar{display:none}
+.plabel{font-size:13.5px;font-weight:600;color:#fff;line-height:1.22;max-width:138px;flex:0 0 auto}
+.ulogo{display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.ulogoimg{height:38px;width:auto;display:block}
+.umore{display:flex;align-items:center;gap:6px;text-decoration:none;color:#fff;font-weight:600;font-size:13.5px;white-space:nowrap;flex:0 0 auto}
+.umorearrow{font-size:17px;line-height:1}
+.umore:hover{color:var(--gold)}
+@media(max-width:620px){.ulogoimg{height:32px}.plabel{font-size:12px;max-width:110px}}
+.banner{aspect-ratio:16/10}
+.banner img{object-position:center 40%}
+@media(max-width:620px){.banner{aspect-ratio:4/3}}
+@media(prefers-reduced-motion:reduce){.marquee-track{animation:none;overflow-x:auto}}
+
+nav{background:var(--accent);backdrop-filter:none;border-bottom:1px solid rgba(255,255,255,.14);box-shadow:0 2px 18px rgba(74,29,99,.20)}
+.nav-links a{color:rgba(255,255,255,.92)}
+.nav-links a:hover{color:var(--gold)}
+.nav-links a.active{color:var(--gold);font-weight:600}
+nav .btn-fill{background:var(--gold);color:var(--accent-deep)}
+nav .btn-fill:hover{background:var(--gold-deep);color:var(--accent-deep)}
+.burger span{background:#fff}
+@media(max-width:900px){.nav-links{background:var(--accent-deep)!important;border-bottom-color:rgba(255,255,255,.15)!important}}
+
+.nav-inner{justify-content:flex-start}
+.logo{margin-right:auto}
+.nav-cta{margin-left:22px;padding:10px 20px}
+.burger{margin-left:14px}
+@media(max-width:900px){.nav-cta{margin-left:0;padding:8px 16px;font-size:13.5px}.burger{margin-left:12px}}
+
+/* Gallery: uniform aligned grid, consistent sizing, gentle crop to keep faces, no gaps */
+.gfeature{margin-top:24px;border-radius:14px;overflow:hidden;background:var(--lav);aspect-ratio:16/9;line-height:0}
+.gfeature img{width:100%;height:100%;display:block;object-fit:cover;object-position:center 38%}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
+.gphoto{aspect-ratio:3/2;border-radius:12px;overflow:hidden;background:var(--lav);box-shadow:0 6px 18px rgba(28,27,34,.06);transition:transform .3s ease,box-shadow .3s ease}
+.gphoto img{width:100%;height:100%;display:block;object-fit:cover;object-position:center;transition:transform .5s ease}
+.gphoto:hover{transform:translateY(-4px);box-shadow:0 18px 38px rgba(74,29,99,.20);position:relative;z-index:2}
+.gphoto:hover img{transform:scale(1.05)}
+@media(max-width:980px){.gallery{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.gallery{grid-template-columns:1fr}}
+/* --- refinement pass 2 --- */.btns.center{gap:18px;align-items:center}.cards.four{grid-template-columns:repeat(4,1fr);gap:22px}@media(max-width:1080px){.cards.four{grid-template-columns:repeat(2,1fr)}}@media(max-width:600px){.cards.four{grid-template-columns:1fr}}.testi-section .center-head .lead{font-size:16px;line-height:1.55;font-weight:400;color:rgba(255,255,255,.78);max-width:58ch}.testi{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-left:5px solid var(--gold);border-radius:20px;padding:44px 46px 36px;box-shadow:0 26px 64px rgba(0,0,0,.20)}.testi .bigmark{left:24px;top:8px;font-size:128px;color:rgba(253,184,19,.16)}.testi .q{font-size:25px}.testi .dots{justify-content:center;margin-top:30px}.qcard{border-top:3px solid var(--gold)}.qcard p{font-size:16px;color:var(--ink);font-weight:600}@media(max-width:600px){.testi{padding:30px 22px 26px}.testi .q{font-size:20px}.testi .bigmark{font-size:94px;top:-2px;left:14px}}/* --- refinement pass 3 --- */.section.stats{padding:54px 0}.stat .num{font-size:56px;letter-spacing:-2px}.stat .lbl{font-size:13.5px;margin-top:10px}@media(max-width:600px){.section.stats{padding:40px 0}.stat .num{font-size:44px}}.testi{text-align:center}.testi .q{text-align:center}.testi .who{text-align:center}.testi .bigmark{left:50%;transform:translateX(-50%);top:-12px}.testi .dots{justify-content:center}.qcard{text-align:center;align-items:center;transition:transform .25s,box-shadow .25s}.qcard .qm{align-self:center}.qcard:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(107,44,145,.10)}/* --- refinement pass 4 --- */.oc-split{grid-template-columns:0.72fr 1.28fr;gap:52px;align-items:center}.oc-split .media{aspect-ratio:4/3}@media(max-width:860px){.oc-split{grid-template-columns:1fr;gap:32px}}.figures{background:var(--accent-deep);border-radius:18px;padding:28px 22px;gap:14px;margin-top:32px;margin-bottom:6px;text-align:center}.figure .fnum{font-size:32px}.figure .flbl{font-size:12px;margin-top:6px}@media(max-width:600px){.figures{padding:24px 18px}.figure .fnum{font-size:28px}}/* --- refinement pass 6 --- */.btns{justify-content:center}.oc-split{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:center}.oc-split>.media{grid-column:span 1;aspect-ratio:4/3}.oc-split>.reveal:not(.media){grid-column:span 2}.oc-article{max-width:none;margin-left:0;margin-right:0}@media(max-width:860px){.oc-split{grid-template-columns:1fr}.oc-split>.media,.oc-split>.reveal:not(.media){grid-column:auto}}/* oc feature */.oc-feature{max-width:none}.oc-feature-media{width:100%;aspect-ratio:16/9;margin:30px auto 24px;display:block}@media(max-width:600px){.oc-feature-media{aspect-ratio:4/3}}
+/* --- pass 9 (design polish) --- */
+.oc-cols{
+  column-count:2;
+  column-gap:50px;
+  margin-top:26px
+}
+.oc-cols p{
+  margin:0 0 16px;
+  break-inside:avoid;
+  max-width:none}
+.oc-article{margin-top:30px}
+.oc-feature .lede{margin-bottom:4px}
+@media(max-width:760px){
+  .oc-cols{column-count:1}
+}
+/* split balance */.split{align-items:stretch}.split>.media{height:100%;aspect-ratio:auto;min-height:340px}.split>.vid{align-self:center}@media(max-width:760px){.split>.media{min-height:260px}}/* --- design-audit pass --- */@media(min-width:601px) and (max-width:900px){.blocks,.cards,.qgrid,.video-grid{grid-template-columns:repeat(2,1fr)}}.article{max-width:680px}.oc-feature .eyebrow,.oc-feature .lede{text-align:center}
+/* ── FINAL QA POLISH PASS ─────────────────────────────────────
+   Visual-only refinements: measure, rhythm, optical alignment.
+   No structure, copy, color, or component changes. */
+
+/* Editorial measure + line-height for body copy (55–70ch, 1.7–1.8) */
+.article p,.oc-cols p,p{line-height:1.75}
+.article p{max-width:68ch}
+.oc-cols{column-gap:52px}
+.oc-cols p{max-width:48ch}
+
+/* Centered lead paragraphs: balanced line breaks, not justified */
+.center-head .lead,.hero-content .lead,.testi-section .center-head .lead{
+  max-width:54ch;line-height:1.7;
+}
+.feature-quote p{max-width:52ch;line-height:1.75}
+.pull p{line-height:1.42}
+
+/* Card internal rhythm: identical vertical spacing + equal height within row */
+.cards,.blocks,.qgrid{align-items:stretch}
+.card,.block,.qcard{display:flex;flex-direction:column;height:100%}
+.card p,.block p{flex:1}
+.card .btns,.block .btns{margin-top:auto}
+
+/* Section rhythm: consistent breathing room top/bottom of inner content */
+.section>.wrap>*:first-child{margin-top:0}
+.center-head{margin-bottom:4px}
+
+/* CTA optical centering: equal vertical rhythm above/below, consistent gap */
+.btns{row-gap:14px}
+.center-head+.btns,.lead+.btns{margin-top:32px}
+
+/* Image integration: consistent corner radius + crop discipline across grid */
+.media,.gphoto,.gfeature,.banner,.video-thumb,.oc-feature-media{
+  border-radius:16px;
+}
+
+/* Optical balance: tighten oversized hero underline offset slightly */
+.uline{text-underline-offset:6px}
+
+/* Testimonial block: balanced quote width for editorial feel */
+.testi .q{max-width:62ch;margin-left:auto;margin-right:auto}
+
+/* Footer mission line: comfortable measure */
+.foot-mission{max-width:36ch;line-height:1.7}
+
+/* Stats: consistent optical centering of number+label pair */
+.stat{display:flex;flex-direction:column;align-items:center}
+
+/* ── BODY COPY ALIGNMENT (unified) ────────────────────────────────
+   Every long-form paragraph on the site — split-section copy, article
+   text, two-column body copy, card text — now reads the same way the
+   "Big Idea" home section always did: left-aligned, generous line-
+   height, capped measure. Justify is no longer used anywhere; in
+   narrow columns it produced uneven word-gaps, and it was the source
+   of most of the inconsistency between sections. One rule, used
+   everywhere, is what makes a page feel premium instead of patched
+   together. */
+.article p,
+.oc-cols p,
+.ccard p{
+  text-align: left;
+}
+
+/* ── UX AUDIT FIXES ─────────────────────────────────────────── */
+
+/* 1. ON-CAMPUS FEATURE IMAGE — fix collapsed height in .media.oc-feature-media */
+.oc-feature-media {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  border-radius: 16px;
+  margin: 28px auto 28px;
+  background: var(--accent-deep);
+}
+.oc-feature-media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+  display: block;
+}
+@media(max-width:600px){
+  .oc-feature-media { aspect-ratio: 4/3; }
+}
+
+/* 2. BODY COPY — left-aligned everywhere, by default */
+p {
+  text-align: left;
+}
+.foot-ack { text-align: left; }
+
+/* 3. OC-FEATURE "What it actually looks like" — centred layout, justified copy */
+.oc-feature {
+  max-width: 820px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.oc-feature .eyebrow {
+  text-align: center;
+  margin-bottom: 10px;
+}
+.oc-feature .lede {
+  text-align: center;
+  margin-bottom: 0;
+}
+.oc-cols {
+  column-count: 2;
+  column-gap: 48px;
+  margin-top: 28px;
+  align-items: flex-start;
+}
+.oc-cols p {
+  margin: 0 0 16px;
+  break-inside: avoid;
+  max-width: none;
+  text-align: left;
+}
+@media(max-width:760px){
+  .oc-cols { column-count: 1; }
+}
+
+/* 4. OC-ARTICLE CTA — centre the "See the impact" button */
+.oc-article .btns {
+  justify-content: center;
+  margin-top: 32px;
+}
+
+/* 5. ARTICLE body text — left-aligned, consistent with the rest of the site */
+.article p {
+  text-align: left;
+}
+
+/* 6. FONT SIZE CONSISTENCY */
+/* Resolve dual h1 definitions: single authoritative base */
+h1 {
+  font-size: clamp(34px, 5.5vw, 62px);
+  font-weight: 800;
+  line-height: 1.06;
+  letter-spacing: -1.5px;
+  color: var(--ink);
+}
+.hero-content h1 {
+  color: #fff;
+  font-size: clamp(34px, 5.5vw, 60px);
+  max-width: 18ch;
+  margin: 0 auto;
+}
+h2 {
+  font-size: clamp(24px, 3.5vw, 40px);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -.8px;
+  color: var(--ink);
+}
+/* .lede subheading — sits between h2 and lead, keep 22–24px range */
+.lede {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+
+/* 7. GLOBAL BTNS — always centred */
+.btns {
+  justify-content: center;
+}
+
+/* 8. CHECKLIST items — left-align, no justify */
+.checklist li {
+  text-align: left;
+  hyphens: none;
+}
+
+/* 9. lead paragraphs — never justify, always centred where inside center-head */
+.lead {
+  text-align: inherit;
+  hyphens: none;
+}
+.center-head .lead {
+  text-align: center;
+}
+
+/* ── END UX AUDIT FIXES ──────────────────────────────────────── */
+
+/* ════════════════════════════════════════════════════════════════
+   LAYOUT SYSTEM v2 — grid, spacing scale, alignment discipline
+   This block is intentionally last so it wins the cascade over the
+   patched rules above without deleting them. See accompanying spec.
+   ════════════════════════════════════════════════════════════════ */
+
+:root{
+  /* 12-column grid */
+  --grid-max:1180px;
+  --grid-gutter:32px;
+  --grid-col-gap:24px;
+
+  /* 8px spacing scale */
+  --sp-1:8px;   --sp-2:16px;  --sp-3:24px;  --sp-4:32px;
+  --sp-5:40px;  --sp-6:48px;  --sp-7:64px;  --sp-8:80px;
+  --sp-9:96px;  --sp-10:120px;
+
+  /* rhythm tokens mapped to the scale */
+  --space-section:var(--sp-10);   /* 120px — between major sections */
+  --space-section-sm:var(--sp-8); /* 80px — mobile section padding */
+  --space-block:var(--sp-6);      /* 48px — between related components inside a section */
+  --space-tight:var(--sp-2);      /* 16px — inside a grouped element (eyebrow→h2, h2→lead) */
+  --space-micro:var(--sp-1);      /* 8px  — tightest grouping */
+
+  --text-max:680px;  /* reading-width cap, 60-70ch at body size */
+  --radius:16px;
+}
+
+/* All section content sits on the same 12-col grid: same max-width,
+   same side gutters, everywhere, no per-section overrides. */
+.wrap{max-width:var(--grid-max);padding-left:var(--grid-gutter);padding-right:var(--grid-gutter)}
+
+/* Section rhythm: large gap between sections, identical top+bottom */
+.section{padding-top:var(--space-section);padding-bottom:var(--space-section)}
+@media(max-width:900px){
+  .section{padding-top:var(--space-section-sm);padding-bottom:var(--space-section-sm)}
+}
+
+/* Intro block rhythm: eyebrow → heading → lead, tight + consistent everywhere */
+.center-head{max-width:var(--text-max)}
+.center-head .eyebrow{margin-bottom:var(--space-tight)}
+.center-head .lead{margin-top:var(--space-tight)!important;max-width:var(--text-max)}
+.eyebrow{margin-bottom:var(--space-tight)}
+
+/* Content block sits at a fixed, predictable distance below the intro block
+   across every section — this is the "supporting paragraph → content block"
+   beat the spec calls for. */
+.oc-feature,.article,.blocks,.cards,.qgrid,.video-grid,.gallery,.contact-grid,
+.split,.figures,.checklist,.banner{margin-top:var(--space-block)!important}
+
+/* Text column width cap: long-form copy reads at a fixed measure regardless
+   of how wide the viewport is. Full-bleed is reserved for media only. */
+.article,.oc-cols,.oc-feature .oc-cols{max-width:var(--text-max)}
+.article{margin-left:auto;margin-right:auto}
+
+/* 12-column grid utility classes (used by .split and feature media) */
+.grid-12{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--grid-col-gap)}
+.split{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--grid-col-gap);align-items:center}
+.split>*{grid-column:span 6}
+@media(max-width:760px){.split>*{grid-column:1/-1}}
+
+/* Component consistency: every card/block shares one radius + padding rule,
+   overriding any one-off radius values introduced in earlier passes. */
+.card,.block,.qcard,.ccard,.video-card,.media,.gphoto,.gfeature,.banner,.oc-feature-media{
+  border-radius:var(--radius);
+}
+.card,.block{padding:var(--sp-4) var(--sp-3)}
+
+/* Buttons: one shared vertical rhythm above any button row */
+.btns{margin-top:var(--space-block)}
+
+/* On Campus feature image: locked to the same media rhythm as every other
+   in-page image (.media, .banner) — identical top/bottom spacing, identical
+   16:9 ratio, identical radius. No per-image one-offs. */
+.oc-feature-media{
+  margin-top:var(--space-tight);
+  margin-bottom:var(--space-block);
+  border-radius:var(--radius);
+}
+.oc-feature .oc-cols{margin-top:0}
+
+/* Footer columns snap to the same 12-col rhythm as the rest of the page */
+.foot-top{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--sp-5)}
+.foot-top>:first-child{grid-column:span 6}
+.foot-top>:nth-child(2){grid-column:span 3}
+.foot-top>:nth-child(3){grid-column:span 3}
+@media(max-width:520px){.foot-top>*{grid-column:1/-1}}
+
+/* ════════════════════════════════════════════════════════════════
+   LAYOUT CONSISTENCY + HIERARCHY PASS — final, wins the cascade.
+   ════════════════════════════════════════════════════════════════ */
+
+/* 1. PROVEN IMPACT — one authoritative size/weight/line-height for
+   every figure in the strip, and a uniform grid instead of loose
+   flex spacing so the three items sit on identical baselines. */
+.figures{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:0;
+  align-items:start;
+}
+.figure{display:flex;flex-direction:column;align-items:center;justify-content:flex-start}
+.figure .fnum{
+  font-size:34px!important;
+  font-weight:800!important;
+  line-height:1.1!important;
+  letter-spacing:-1px;
+}
+.figure .fnum b{font-size:inherit;font-weight:inherit}
+.figure .flbl{
+  font-size:13px!important;
+  font-weight:600!important;
+  line-height:1.4!important;
+  letter-spacing:.02em;
+  margin-top:8px!important;
+}
+@media(max-width:600px){
+  .figures{grid-template-columns:1fr;gap:22px}
+  .figure .fnum{font-size:30px!important}
+}
+
+/* 2. ON CAMPUS — center the section title against the full section
+   container (.wrap), not just whatever width its own text wraps to.
+   Force the intro block to be a true centered flex column so no
+   left-over margin/padding from a parent can pull it off-axis. */
+#page-on-campus .center-head{
+  width:100%;
+  max-width:var(--text-max);
+  margin-left:auto!important;
+  margin-right:auto!important;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+#page-on-campus .center-head .eyebrow,
+#page-on-campus .center-head h2,
+#page-on-campus .center-head .lead{
+  width:100%;
+  text-align:center;
+}
+
+/* 3. ON CAMPUS ARTICLE GRID — equal column widths, equal gutters,
+   shared baseline, uniform card height regardless of copy length. */
+.cards.four{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:var(--grid-col-gap);
+  align-items:stretch;
+}
+.cards.four .card{
+  display:flex;
+  flex-direction:column;
+  height:100%;
+  padding:var(--sp-4) var(--sp-3);
+}
+.cards.four .card h3{margin-bottom:8px}
+.cards.four .card p{flex:1;margin:0}
+@media(max-width:1080px){.cards.four{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.cards.four{grid-template-columns:1fr}}
+
+/* 4. TYPOGRAPHY HIERARCHY — page title (h1) > section title (h2) >
+   article title (h3), enforced with explicit, non-overlapping
+   clamps so the scale never collapses at any breakpoint. */
+h1{font-size:clamp(36px,5.2vw,60px)!important;font-weight:800!important;line-height:1.08!important}
+h2{font-size:clamp(26px,3.2vw,38px)!important;font-weight:800!important;line-height:1.15!important}
+h3{font-size:clamp(18px,1.6vw,21px)!important;font-weight:700!important;line-height:1.35!important}
+.card h3,.block h3,.qcard h3,.ccard h3{
+  font-size:clamp(17px,1.4vw,19px)!important;
+  font-weight:700!important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   GLOBAL VISUAL REFINEMENT PASS — Design System Consistency
+   
+   Applies a unified spacing scale, improved type hierarchy, wider
+   column gaps, and consistent alignment across every content section.
+   Visual-only: no color, font-family, structure, or branding changes.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── TYPOGRAPHY SCALE ───────────────────────────────────────────── */
+
+/* Eyebrow / section labels: 15px, wider tracking, consistent spacing */
+.eyebrow {
+  font-size: 15px !important;
+  letter-spacing: .18em !important;
+  margin-bottom: 16px !important;
+  line-height: 1.5 !important;
+}
+
+/* Primary section headings: 56px desktop per spec */
+h2 {
+  font-size: clamp(34px, 4.2vw, 56px) !important;
+  font-weight: 800 !important;
+  line-height: 1.1 !important;
+  letter-spacing: -1px !important;
+}
+
+/* Secondary headings (h3 in articles, features — not card titles) */
+.article h3,
+.oc-feature h3 {
+  font-size: clamp(22px, 2.2vw, 30px) !important;
+  font-weight: 700 !important;
+  line-height: 1.3 !important;
+}
+
+/* Card / block headings stay compact for UI density */
+.card h3,
+.block h3,
+.qcard h3,
+.ccard h3 {
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  line-height: 1.35 !important;
+}
+
+/* Section lede/subtitle: between h2 and body */
+.lede {
+  font-size: clamp(22px, 2.4vw, 28px) !important;
+  font-weight: 700 !important;
+  line-height: 1.35 !important;
+  margin-bottom: 8px !important;
+}
+
+/* Lead paragraphs: 20px, comfortable line length */
+.lead {
+  font-size: 20px !important;
+  line-height: 1.7 !important;
+}
+
+/* Article / long-form body copy: 18px, generous leading */
+.article p {
+  font-size: 18px !important;
+  line-height: 1.75 !important;
+  margin-bottom: 20px !important;
+  max-width: 68ch !important;
+}
+
+/* Two-column article body */
+.oc-cols p {
+  font-size: 18px !important;
+  line-height: 1.75 !important;
+}
+
+/* Card / block / contact body: slightly smaller, still readable */
+.card p,
+.block p,
+.ccard p,
+.qcard p {
+  font-size: 16px !important;
+  line-height: 1.7 !important;
+}
+
+/* Video card body */
+.video-body p {
+  font-size: 15px !important;
+  line-height: 1.65 !important;
+}
+
+/* Testimonial large quote */
+.testi .q {
+  font-size: clamp(20px, 2.2vw, 26px) !important;
+  line-height: 1.5 !important;
+}
+
+/* Feature quote subtitle */
+.feature-quote p {
+  font-size: 18px !important;
+  line-height: 1.7 !important;
+  max-width: 58ch !important;
+}
+
+/* ── SECTION SPACING ────────────────────────────────────────────── */
+
+/* All content sections: 100px top/bottom — unified rhythm */
+.section {
+  padding-top: 104px !important;
+  padding-bottom: 104px !important;
+}
+
+/* Stats bar stays compact */
+.section.stats {
+  padding-top: 56px !important;
+  padding-bottom: 56px !important;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+  .section {
+    padding-top: 72px !important;
+    padding-bottom: 72px !important;
+  }
+  .section.stats {
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
+  }
+}
+
+/* Mobile */
+@media (max-width: 520px) {
+  .section {
+    padding-top: 56px !important;
+    padding-bottom: 56px !important;
+  }
+}
+
+.stats .eyebrow {
+  color: var(--gold); 
+}
+
+/* ── CENTER-HEAD BLOCK RHYTHM ───────────────────────────────────── */
+
+/* Centered intro block: consistent bottom margin before content */
+.center-head {
+  max-width: 780px !important;
+  margin-bottom: 56px !important;
+}
+
+.center-head h2 {
+  margin-bottom: 20px;
+}
+
+/* Eyebrow → heading tight grouping */
+.center-head .eyebrow {
+  margin-bottom: 14px !important;
+}
+
+/* Lead under heading: consistent top margin */
+.center-head .lead {
+  margin-top: 18px !important;
+  max-width: 640px !important;
+}
+
+/* Left-aligned section intro: consistent spacing */
+.eyebrow + h2,
+.eyebrow ~ h2 {
+  margin-top: 0;
+}
+
+/* ── TWO-COLUMN LAYOUTS: 80px GAP, TOPS ALIGNED ─────────────────── */
+
+/* .split: equal columns, 80px gap, tops aligned */
+.split {
+  gap: 80px !important;
+  align-items: start !important;
+}
+
+/* Tablet: reduce gap */
+@media (max-width: 900px) {
+  .split {
+    gap: 40px !important;
+  }
+}
+
+/* Mobile: single column (existing rule handles column-template) */
+@media (max-width: 760px) {
+  .split {
+    gap: 32px !important;
+  }
+}
+
+/* Contact grid: wider gap */
+.contact-grid {
+  gap: 56px !important;
+  margin-top: 52px !important;
+}
+
+@media (max-width: 900px) {
+  .contact-grid {
+    gap: 28px !important;
+  }
+}
+
+/* ── THREE / FOUR-COLUMN GRIDS ───────────────────────────────────── */
+
+/* Blocks and cards: more breathing room between columns */
+.blocks,
+.cards,
+.video-grid {
+  gap: 28px !important;
+}
+
+.qgrid {
+  gap: 28px !important;
+}
+
+@media (max-width: 900px) {
+  .blocks,
+  .cards,
+  .video-grid,
+  .qgrid {
+    gap: 24px !important;
+  }
+}
+
+/* ── CONTENT BLOCK TOP MARGINS ───────────────────────────────────── */
+
+/* Distance from intro block to first content element */
+.blocks,
+.cards,
+.qgrid,
+.video-grid,
+.gallery,
+.contact-grid,
+.split,
+.figures,
+.checklist,
+.banner {
+  margin-top: 52px !important;
+}
+
+/* Article text block */
+.article {
+  max-width: 720px !important;
+  margin-top: 36px !important;
+}
+
+/* Feature quote: generous spacing above */
+.feature-quote {
+  margin-top: 64px !important;
+  padding: 56px 56px !important;
+  max-width: 960px !important;
+}
+
+@media (max-width: 900px) {
+  .feature-quote {
+    padding: 44px 40px !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .feature-quote {
+    padding: 36px 28px !important;
+    margin-top: 48px !important;
+  }
+}
+
+/* Checklist: spacing above and item spacing */
+.checklist {
+  margin-top: 36px !important;
+}
+.checklist li {
+  font-size: 17px !important;
+  padding: 14px 0 14px 34px !important;
+  line-height: 1.5 !important;
+}
+
+/* ── ARTICLE INTERNAL SPACING ─────────────────────────────────────── */
+
+.article h3 {
+  margin-top: 36px !important;
+  margin-bottom: 12px !important;
+}
+
+/* ── IMAGES: CONSISTENT RADIUS & SPACING ─────────────────────────── */
+
+/* Unified border radius across all media elements */
+.media,
+.gphoto,
+.gfeature,
+.banner,
+.oc-feature-media,
+.video-thumb {
+  border-radius: 16px !important;
+}
+
+/* Media in split: meaningful minimum height */
+.split > .media {
+  min-height: 380px;
+}
+
+/* Gallery spacing */
+.gallery {
+  gap: 14px !important;
+  margin-top: 36px !important;
+}
+
+/* ── BUTTONS: STANDARDIZED SIZE ──────────────────────────────────── */
+
+.btn {
+  font-size: 15px !important;
+  padding: 15px 30px !important;
+  border-radius: 40px !important;
+}
+
+/* Nav button stays compact */
+.nav-links .btn {
+  padding: 10px 20px !important;
+  font-size: 14.5px !important;
+}
+
+/* Button rows: consistent gap and top margin */
+.btns {
+  gap: 16px !important;
+  margin-top: 40px !important;
+  row-gap: 12px !important;
+}
+
+/* ── CARDS & BLOCKS: CONSISTENT PADDING ─────────────────────────── */
+
+.card {
+  padding: 32px 30px !important;
+}
+
+.block {
+  padding: 30px 28px !important;
+}
+
+.ccard {
+  padding: 36px !important;
+}
+
+/* ── STAT NUMBERS ────────────────────────────────────────────────── */
+
+.stat .num {
+  font-size: clamp(40px, 4vw, 56px) !important;
+  letter-spacing: -1.5px !important;
+  line-height: 1 !important;
+}
+
+.stat .lbl {
+  font-size: 14px !important;
+  letter-spacing: .02em !important;
+  margin-top: 10px !important;
+}
+
+/* ── FIGURE STRIP ────────────────────────────────────────────────── */
+
+.figure .fnum {
+  font-size: 36px !important;
+  letter-spacing: -1px !important;
+}
+
+/* ── OC SPLIT: SLIGHTLY WIDER GAP ───────────────────────────────── */
+
+.oc-split {
+  gap: 40px !important;
+}
+
+/* ── RESPONSIVE SCALING ─────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .center-head {
+    margin-bottom: 40px !important;
+  }
+  .blocks,
+  .cards,
+  .qgrid,
+  .video-grid {
+    gap: 20px !important;
+  }
+  .card,
+  .block {
+    padding: 26px 24px !important;
+  }
+  .btns {
+    margin-top: 32px !important;
+  }
+}
+
+@media (max-width: 520px) {
+  h2 {
+    font-size: clamp(28px, 7vw, 40px) !important;
+  }
+  .lead {
+    font-size: 18px !important;
+  }
+  .article p,
+  .oc-cols p {
+    font-size: 17px !important;
+  }
+  .btn {
+    padding: 13px 24px !important;
+    font-size: 14.5px !important;
+  }
+  .btns {
+    margin-top: 28px !important;
+    gap: 12px !important;
+  }
+  .contact-grid {
+    gap: 24px !important;
+  }
+  .feature-quote {
+    padding: 32px 24px !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   TARGETED FIXES — On Campus feature article, Corporate hero photo,
+   and Gallery sub-section titles.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* "What it actually looks like" was rendering as a tiny, card-sized
+   label floating right above a full-width photo, with almost no
+   breathing room — it read as misaligned clutter instead of a proper
+   section subhead. Give it real heading weight and proper spacing
+   above/below the photo so the block reads as one composed unit. */
+.oc-feature .lede{
+  margin-bottom:16px!important;
+}
+.oc-feature-media{
+  margin-top:32px!important;
+}
+
+/* Corporate page hero photo was nearly twice as tall as every other
+   image on the page (a later pass had silently changed its aspect
+   ratio from 21:9 to 16:10), making it visually dominate the section
+   it introduces. Restore the shorter, cinematic crop. */
+.banner{
+  aspect-ratio:21/9!important;
+}
+@media(max-width:620px){
+  .banner{aspect-ratio:4/3!important;}
+}
+
+/* "Watch" and "In photos" were styled smaller (12.5px) than the
+   "Gallery" eyebrow above them (15px), so the sub-sections looked
+   like an afterthought instead of intentional dividers. Match them. */
+.subhead{
+  font-size:15px;
+  letter-spacing:.18em;
+}
+
+/* Newspaper Column Layout for Features */
+.news-columns {
+  column-count: 2;          
+  column-gap: 40px;         
+  column-rule: 1px solid var(--line); 
+  text-align: justify;     
+  margin-top: 24px;
+}
+
+.news-columns p {
+  font-size: 18px;
+  line-height: 1.75;
+  margin-bottom: 16px;
+  text-indent: 0;         
+  display: block;           
+}
+
+
+@media (max-width: 768px) {
+.news-columns {
+    column-count: 1;        /* Drops down to a clean single column on mobile */
+  }
+  .news-columns p {
+    font-size: 17px;        /* Slightly scales down text on small mobile screens for comfort */
+  }
+}
+
+.h1 {
+  color: var(--accent);
+}
+
+
+body .center-head.apac-intro .eyebrow {
+  font-size: 25px !important; 
+  text-transform: uppercase;
+  margin-bottom: 20px !important;
+  display: block;
+}
+
+body .center-head.apac-intro .lead {
+  font-size: 22px !important;
+  line-height: 1.5 !important;
+  max-width: 100% !important;
+}
+
+/* APAC Gallery */
+
+.apac-gallery{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:28px;
+    margin:50px auto 0;
+    max-width:1100px;
+}
+
+.apac-photo{
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+    transition:.3s ease;
+}
+
+.apac-photo img{
+    width:100%;
+    aspect-ratio:16/9;
+    object-fit:cover;
+    display:block;
+    transition:.4s ease;
+}
+
+.apac-photo:hover{
+    transform:translateY(-6px);
+    box-shadow:0 18px 40px rgba(74,29,99,.22);
+}
+
+.apac-photo:hover img{
+    transform:scale(1.05);
+}
+
+@media(max-width:768px){
+    .apac-gallery{
+        grid-template-columns:1fr;
+    }
+}
+
+/* Watch Section Text Effects Fixes */
+.video-grid .reveal, 
+.video-card .reveal,
+.video-body * {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+/* Ensure Videos Play Inline Properly */
+.video-thumb iframe {
+  width: 100% !important;
+  height: 100% !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 0;
+  z-index: 5;
+}
