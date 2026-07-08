@@ -45,10 +45,16 @@ a{
 }
 
 .wrap{
-  max-width: 92%;
-  width: 1440px !important;
+  max-width: 1440px;
+  width: 100% !important;
   margin:0 auto;
-  padding:0 48px !important;
+  padding:0 24px !important;
+}
+
+@media (min-width: 768px) {
+  .wrap {
+    padding: 0 48px !important;
+  }
 }
 
 /*---FOR SECTION---*/
@@ -1685,7 +1691,7 @@ body.editing .gfeature,body.editing .media{
   align-items:center;
   gap:6px;
   text-decoration:none;
-  color:#000;
+  color:black;
   font-weight:600;
   font-size:13.5px;
   white-space:nowrap;
@@ -3303,4 +3309,92 @@ body .center-head.apac-intro .lead {
   margin-bottom:16px;
   margin-top:9px;
   margin-left: 15px; 
+}
+
+/* 1. Pugngan ang tibuok body nga molapas sa screen */
+html, body {
+  width: 100%;
+  overflow-x: hidden; /* Kini ang moputol sa bisan unsa nga milapas sa kilid */
+  margin: 0;
+  padding: 0;
+}
+
+/* 2. I-adjust ang mga text nga dako ra kaayo kung naa sa mobile view */
+@media (max-width: 768px) {
+  .eyebrow {
+    font-size: 24px !important; /* Gipagamyan para sakto lang sa mobile screen */
+  }
+  
+  /* Sigurohon nga ang tanang section dili molapas */
+  .section, .wrap, nav, footer {
+    max-width: 100% !important;
+    box-sizing: border-box;
+  }
+}
+
+/* --- SAKTONG FIX PARA SA IMONG FOOTER SA MOBILE --- */
+@media (max-width: 768px) {
+  /* 1. I-stack ang main footer content: Logo sa taas, unya ang duha ka columns sa links sa ubos */
+  footer .foot-top {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 35px !important;
+  }
+
+  /* 2. Himoon nato nga magtapad ang "Explore" ug "Contact" nga columns (2 columns) */
+  /* Pangitaon nato ang mga columns human sa logo aron ma-grid sila og tag-duha */
+  footer .foot-top {
+    display: grid !important;
+    grid-template-columns: 1fr !important; /* Sa mobile, i-separate ang Logo text block */
+    gap: 30px !important;
+  }
+
+  /* Para magtapad ang Explore ug Contact links, atong isulod sa 2-column container layout */
+  footer .foot-top {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  /* Atong pugson ang mga kolum sa links (Explore ug Contact) nga magtapad */
+  /* Maghimo kita og sub-grid para sa mga kolum sa links */
+  footer .foot-top {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Saktong pamaagi aron magtapad ang duha ka columns (Explore ug Contact) samtang ang Logo mag-inusara sa taas */
+  footer .foot-top {
+    display: block !important; /* I-reset ang grid sa desktop */
+  }
+
+  .foot-logo-block {
+    margin-bottom: 30px;
+    width: 100%;
+  }
+
+  /* I-target ang duha ka serye sa links (Explore ug Contact) aron magtapad sila og nindot */
+  footer .foot-top {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  
+  /* Mas maayo nga pamaagi: Atong usbon ang grid structure sa tibuok `.foot-top` para sa mobile */
+  footer .foot-top {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important; /* Himoon kining 2 columns */
+    gap: 30px 20px !important;
+  }
+
+  /* Ang pinakaunang column (Logo ug Mission Statement) kay hatagan og tibuok 2-column width para naa siya sa taas mag-inusara */
+  footer .foot-top .foot-col:first-child {
+    grid-column: span 2 !important; 
+    margin-bottom: 10px;
+  }
+
+  /* Sigurohon nga ang mga text ug email dili molapas sa gilapdon sa screen */
+  footer .foot-col a, footer .foot-mission {
+    font-size: 14px !important;
+    word-break: break-word !important; /* Kung taas ang email, automatic mopaubos aron dili maputol */
+    max-width: 100% !important;
+  }
 }
