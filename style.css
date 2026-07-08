@@ -3549,3 +3549,279 @@ html, body {
   animation-play-state: paused !important;
   cursor: grabbing;
 }
+
+
+/*--TESTIMONIAL TQ TEXT--*/
+/* Carousel Container Wrapper */
+.testi-carousel-container {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow: hidden; /* Gi-fix ang broken comment nga '/' */
+  padding: 40px 20px; /* Gidugangan og sideway padding aron dili maputol ang card shadows */
+}
+
+.testi-track {
+  display: flex;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
+  width: max-content;
+}
+
+.testi-card-item {
+  width: 600px; 
+  max-width: 75vw;
+  margin: 0 15px; /* Gidugangan og horizontal margin aron naay breathing room ang cards */
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-top: 4px solid var(--gold);
+  border-radius: 20px;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  position: relative; /* Gi-ensure ang saktong positioning sa .bigmark */
+  
+  transform: scale(0.85); 
+  opacity: 0.4;
+  transition: transform 0.6s ease, opacity 0.6s ease, background-color 0.4s;
+}
+
+/* --- DESKTOP ARROW BUTTONS --- */
+.testi-arrow {
+  display: none; /* Gi-hide by default para sa mobile view */
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 10;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s, border-color 0.3s, color 0.3s;
+}
+
+.testi-arrow:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--ink);
+}
+
+.prev-btn {
+  left: 20px;
+}
+
+.next-btn {
+  right: 20px;
+}
+
+/* --- DESKTOP VIEW RESPONSIVENESS --- */
+@media (min-width: 769px) {
+  .testi-arrow {
+    display: flex; /* Pakit-on lang ang mga arrows kung desktop view */
+  }
+  .testi-carousel-container {
+    padding: 40px 80px; /* Gidugangan ang space sa kilid para dili ma-overlap sa arrows ang cards */
+  }
+}
+
+.testi-card-item.active {
+  transform: scale(1);
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.testi-card-item .q {
+  font-size: clamp(18px, 2vw, 24px) !important;
+  color: #fff;
+  font-weight: 600;
+  line-height: 1.5;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 2;
+}
+
+.testi-card-item .who {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.testi-card-item .who b {
+  color: var(--gold);
+}
+
+.testi-card-item .bigmark {
+  font-size: 80px;
+  line-height: 1;
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  opacity: 0.15;
+  font-family: serif;
+}
+
+.dots.center {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.dots .dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.dots .dot:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.dots .dot.active {
+  background: #f1c40f; 
+  transform: scale(1.2);
+}
+
+/* Responsive adjustments for mobile screens */
+@media (max-width: 768px) {
+  .testi-card-item {
+    width: 290px;
+    margin: 0 10px;
+    padding: 24px;
+  }
+  .testi-card-item .q {
+    font-size: 16px !important;
+  }
+}
+
+
+
+/* --- CREATIVE REACTION GALLERY PLACEHOLDERS --- */
+.reaction-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 60px;
+  width: 100%;
+}
+
+/* Base card wrapping framework */
+.reaction-img-wrapper {
+  position: relative;
+  height: 380px; /* Eksaktong taas para sa magandang aspect-ratio */
+  border-radius: 24px;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.08));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.5s ease, border-color 0.4s;
+}
+
+/* Creative Layout: Asymmetric sizing para hindi boring at flat tingnan */
+.reaction-img-wrapper.item-center {
+  height: 420px; /* Mas mataas ang gitna para magkaroon ng visual rhythm */
+  top: -20px;    /* Naka-angat nang bahagya */
+  border-top: 3px solid var(--gold, #FDB813); /* Gold touch indicator */
+}
+
+.reaction-img-wrapper.item-left {
+  border-top: 3px solid var(--accent, #6B2C91); /* Purple touch indicator */
+}
+
+.reaction-img-wrapper.item-right {
+  border-top: 3px solid var(--accent-light, #9D5FC4); /* Light purple touch indicator */
+}
+
+/* Inner placeholder design grid layout */
+.img-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+  background-size: 20px 20px; /* Dot-matrix background blueprint pattern */
+}
+
+/* Star or geometric branding icon */
+.placeholder-icon {
+  font-size: 32px;
+  color: rgba(255, 255, 255, 0.2);
+  margin-bottom: 12px;
+  transition: transform 0.6s ease, color 0.4s ease;
+}
+
+/* Text tags indicators */
+.placeholder-tag {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  background: rgba(0, 0, 0, 0.2);
+  padding: 8px 16px;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.4s ease;
+}
+
+/* --- CREATIVE HOVER INTERACTION MODIFIERS --- */
+.reaction-img-wrapper:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+
+.reaction-img-wrapper:hover .placeholder-icon {
+  transform: rotate(180deg) scale(1.2);
+  color: var(--gold, #FDB813);
+}
+
+.reaction-img-wrapper:hover .placeholder-tag {
+  color: #FFF;
+  background: var(--accent, #6B2C91);
+  box-shadow: 0 0 15px rgba(107, 44, 145, 0.4);
+}
+
+/*reaction gallery image*/
+.reaction-gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+  object-position: center; 
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.reaction-img-wrapper:hover .gallery-photo {
+  transform: scale(1.08);
+}
+
+/* --- MOBILE RESPONSIVE ADAPTABILITY BREAKPOINT --- */
+@media (max-width: 992px) {
+  .reaction-gallery {
+    grid-template-columns: 1fr; 
+    gap: 20px;
+    margin-top: 40px;
+  }
+  .reaction-img-wrapper, 
+  .reaction-img-wrapper.item-center {
+    height: 250px;
+    top: 0; 
+  }
+}

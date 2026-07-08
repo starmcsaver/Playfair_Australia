@@ -6,13 +6,7 @@ if(gw){var greetings=["Kia ora","G'day","Hello","Talofa","Bula","Namaste"],gi=0;
 function playVideo(el,id){
   el.innerHTML='<iframe src="https://www.youtube.com/embed/'+id+'?autoplay=1&rel=0&playsinline=1" title="Playfair video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
 }
-if(document.getElementById('tqText')){
-  var quotes=[{t:"The energy and activities truly helped ease nerves and build a sense of community from day one. The next morning, you could tell they had found someone to connect to.",w:"Megan Huston",r:"Senior Coordinator for Orientation \u00b7 CSU San Bernardino"},{t:"The best part of welcome week was Playfair. It helped our students meet people they're still friends with.",w:"Tayler Keitzer",r:"Director of First-Year Experience \u00b7 Simpson College"},{t:"We brought Playfair back after COVID as the intentional social interaction our students needed. Years later, it's the best thing we do for them.",w:"Jessica J. Gerum",r:"Associate Director, Major Events \u00b7 University of Connecticut"},{t:"Playfair was a wonderful foundation for our first-year students. They had a blast and were still talking about it that evening.",w:"Allene Shapiro",r:"Coordinator for Community Engagement \u00b7 Ramapo College"},{t:"Everyone I talked to loved Playfair. It set the exact tone we needed for the start of the year. We can't wait to bring you back next year.",w:"Julie Roberson",r:"Assistant Dean for Student Engagement \u00b7 King University"}];
-  var qi=0,dotsEl=document.getElementById('tqDots');
-  function renderDots(){dotsEl.innerHTML='';quotes.forEach(function(_,i){var b=document.createElement('button');b.className='dot'+(i===qi?' active':'');b.setAttribute('aria-label','Quote '+(i+1));b.onclick=function(){qi=i;showQuote();};dotsEl.appendChild(b);});}
-  function showQuote(){var q=quotes[qi];document.getElementById('tqText').innerHTML=q.t;document.getElementById('tqWho').textContent=q.w;document.getElementById('tqRole').textContent=q.r;renderDots();}
-  showQuote();setInterval(function(){qi=(qi+1)%quotes.length;showQuote();},6000);
-}
+
 if(document.getElementById('cal')){
   var calDate=new Date();calDate.setDate(1);var today=new Date();today.setHours(0,0,0,0);
   var selDay=null,selTime=null;
@@ -166,7 +160,6 @@ document.getElementById('enquiryForm').addEventListener('submit', function(e) {
   
   if (!track) return;
 
-
   const clone = track.innerHTML;
   track.innerHTML += clone; 
 
@@ -176,12 +169,10 @@ document.getElementById('enquiryForm').addEventListener('submit', function(e) {
   let startX = 0;
   let dragX = 0;
 
-
   function animateMarquee() {
     if (!isDragging) {
       currentX += speed;
       
-  
       const halfWidth = track.scrollWidth / 2;
       if (Math.abs(currentX) >= halfWidth) {
         currentX = 0;
@@ -192,9 +183,7 @@ document.getElementById('enquiryForm').addEventListener('submit', function(e) {
     requestAnimationFrame(animateMarquee);
   }
 
-
   requestAnimationFrame(animateMarquee);
-
 
   track.addEventListener("touchstart", (e) => {
     isDragging = true;
@@ -208,7 +197,6 @@ document.getElementById('enquiryForm').addEventListener('submit', function(e) {
     const diffX = e.touches[0].clientX - startX;
     currentX = dragX + diffX; 
     
-  
     const halfWidth = track.scrollWidth / 2;
     if (currentX > 0) {
       currentX = -halfWidth;
@@ -223,3 +211,174 @@ document.getElementById('enquiryForm').addEventListener('submit', function(e) {
     isDragging = false;
   });
 });
+
+
+// ========================================================
+// --- FIXED TESTIMONIALS CAROUSEL CODE WITH ARROWS ---
+// ========================================================
+if (document.getElementById('testiTrack')) {
+  var quotes = [
+    { t: "The energy and activities truly helped ease nerves and build a sense of community from day one. The next morning, you could tell they had found someone to connect to.", w: "Megan Huston", r: "Senior Coordinator for Orientation · CSU San Bernardino" },
+    { t: "The best part of welcome week was Playfair. It helped our students meet people they're still friends with.", w: "Tayler Keitzer", r: "Director of First-Year Experience · Simpson College" },
+    { t: "We brought Playfair back after COVID as the intentional social interaction our students needed. Years later, it's the best thing we do for them.", w: "Jessica J. Gerum", r: "Associate Director, Major Events · University of Connecticut" },
+    { t: "Playfair was a wonderful foundation for our first-year students. They had a blast and were still talking about it that evening.", w: "Allene Shapiro", r: "Coordinator for Community Engagement · Ramapo College" },
+    { t: "Everyone I talked to loved Playfair. It set the exact tone we needed for the start of the year. We can't wait to bring you back next year.", w: "Julie Roberson", r: "Assistant Dean for Student Engagement · King University" }
+  ];
+
+  var qi = 0;
+  var containerEl = document.getElementById('testiCarouselContainer');
+  var trackEl = document.getElementById('testiTrack');
+  var dotsEl = document.getElementById('tqDots');
+  
+  var isDragging = false;
+  var startX = 0;
+  var currentTranslate = 0;
+  var prevTranslate = 0;
+  var animationID = 0;
+
+  // I-initialize ug i-render ang tanang cards sa sulod sa track
+  function initCarousel() {
+    trackEl.innerHTML = '';
+    quotes.forEach(function (q) {
+      var card = document.createElement('div');
+      card.className = 'testi-card-item';
+      card.innerHTML = `
+        <div class="bigmark">“</div>
+        <div class="q">${q.t}</div>
+        <div class="who"><b>${q.w}</b><br>${q.r}</div>
+      `;
+      trackEl.appendChild(card);
+    });
+    renderDots();
+    updateCarouselPosition();
+    setupArrowButtons(); // Gipagana ang arrow listeners dinhi
+  }
+
+  // Pag-setup sa Dots navigation
+  function renderDots() {
+    if (!dotsEl) return;
+    dotsEl.innerHTML = '';
+    quotes.forEach(function (_, i) {
+      var b = document.createElement('button');
+      b.className = 'dot' + (i === qi ? ' active' : '');
+      b.setAttribute('aria-label', 'Quote ' + (i + 1));
+      b.onclick = function () {
+        qi = i;
+        updateCarouselPosition();
+      };
+      dotsEl.appendChild(b);
+    });
+  }
+
+  // --- ARROW BUTTON INTERACTION LOGIC (MAO KINI ANG NAGPA-NEXT) ---
+  function setupArrowButtons() {
+    var prevBtn = document.getElementById('testiPrevBtn');
+    var nextBtn = document.getElementById('testiNextBtn');
+
+    if (prevBtn) {
+      prevBtn.onclick = function(e) {
+        e.stopPropagation(); // Likayan nga mag-conflict sa drag gestures
+        if (qi > 0) {
+          qi--;
+        } else {
+          qi = quotes.length - 1; // Mobalik sa katapusan kung i-click ang prev sa sugod
+        }
+        updateCarouselPosition();
+      };
+    }
+
+    if (nextBtn) {
+      nextBtn.onclick = function(e) {
+        e.stopPropagation(); // Likayan nga mag-conflict sa drag gestures
+        if (qi < quotes.length - 1) {
+          qi++;
+        } else {
+          qi = 0; // Mobalik sa sugod kung maabot na sa pinaka-katapusan
+        }
+        updateCarouselPosition();
+      };
+    }
+  }
+
+  // Kalkulahon ang center transition base sa pinili nga active card
+  function updateCarouselPosition() {
+    var cards = document.querySelectorAll('.testi-card-item');
+    if (!cards.length) return;
+
+    cards.forEach(function(card, idx) {
+      card.classList.toggle('active', idx === qi);
+    });
+
+    if (dotsEl) {
+      var dots = dotsEl.querySelectorAll('.dot');
+      dots.forEach(function(dot, idx) {
+        dot.classList.toggle('active', idx === qi);
+      });
+    }
+
+    var containerWidth = containerEl.offsetWidth;
+    var activeCard = cards[qi];
+    var cardWidth = activeCard.offsetWidth;
+    var cardLeft = activeCard.offsetLeft;
+
+    currentTranslate = (containerWidth / 2) - (cardLeft + (cardWidth / 2));
+    prevTranslate = currentTranslate;
+
+    trackEl.style.transform = 'translateX(' + currentTranslate + 'px)';
+  }
+
+  // --- MOUSE & TOUCH DRAG INTERACTION ---
+  containerEl.addEventListener('touchstart', dragStart);
+  containerEl.addEventListener('touchend', dragEnd);
+  containerEl.addEventListener('touchmove', dragMove);
+
+  containerEl.addEventListener('mousedown', dragStart);
+  containerEl.addEventListener('mouseup', dragEnd);
+  containerEl.addEventListener('mouseleave', dragEnd);
+  containerEl.addEventListener('mousemove', dragMove);
+
+  function getPositionX(event) {
+    return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+  }
+
+  function dragStart(event) {
+    if (event.target.closest('.testi-arrow')) return; // Dili i-drag kung ang arrow button ang gi-click
+    isDragging = true;
+    startX = getPositionX(event);
+    trackEl.style.transition = 'none'; 
+    animationID = requestAnimationFrame(animation);
+  }
+
+  function dragMove(event) {
+    if (!isDragging) return;
+    var currentX = getPositionX(event);
+    var diff = currentX - startX;
+    currentTranslate = prevTranslate + diff;
+  }
+
+  function dragEnd() {
+    if (!isDragging) return;
+    isDragging = false;
+    cancelAnimationFrame(animationID);
+
+    trackEl.style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
+    var movedBy = currentTranslate - prevTranslate;
+
+    if (movedBy < -50 && qi < quotes.length - 1) {
+      qi++;
+    } else if (movedBy > 50 && qi > 0) {
+      qi--;
+    }
+    updateCarouselPosition();
+  }
+
+  function animation() {
+    if (isDragging) {
+      trackEl.style.transform = 'translateX(' + currentTranslate + 'px)';
+      requestAnimationFrame(animation);
+    }
+  }
+
+  window.addEventListener('resize', updateCarouselPosition);
+  initCarousel();
+}
