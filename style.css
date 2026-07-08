@@ -3434,6 +3434,12 @@ html, body {
 
 
 @media (max-width: 768px) {
+  .marquee-track {
+    animation: none !important; /* I-off ang automatic CSS scroll sa mobile */
+    display: flex;
+    will-change: transform;
+  }
+
   .eyebrow {
     font-size: 24px !important; 
   }
@@ -3538,8 +3544,8 @@ html, body {
   filter: brightness(1.20);
 }
 
-/* Pause and override the keyframe animation while the user is actively swiping */
+/* Undangon ang automatic movement samtang gi-swipe sa user */
 .marquee.is-swiping .marquee-track {
-  animation: none !important;
+  animation-play-state: paused !important;
   cursor: grabbing;
 }
