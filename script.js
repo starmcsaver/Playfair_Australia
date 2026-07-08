@@ -161,28 +161,27 @@ document.getElementById('enquiryForm').addEventListener('submit', function(e) {
   });
 
   document.addEventListener("DOMContentLoaded", () => {
-  // Targeta ang saktong klase sa imong marquee track base sa index.html
   const track = document.querySelector(".logos-slide") || document.querySelector(".marquee-track");
   const marquee = document.querySelector(".logos") || document.querySelector(".marquee");
   
   if (!track) return;
 
-  // I-clone ang mga sulod para sa infinite loop design (kung wala pa na clone sa HTML)
+
   const clone = track.innerHTML;
   track.innerHTML += clone; 
 
   let currentX = 0;
-  let speed = -1; // Kakusgon sa scroll (-1 nagpasabot padulong sa wala, usba lang ang numero)
+  let speed = -1; 
   let isDragging = false;
   let startX = 0;
   let dragX = 0;
 
-  // 1. ANiMATION LOOP (Mao ni ang sige og paandar sa marquee)
+
   function animateMarquee() {
     if (!isDragging) {
       currentX += speed;
       
-      // Kung malapas na sa tunga (katunga sa tibuok gilapdon tungod sa clone), i-reset sa 0 nga dili mamatngonan
+  
       const halfWidth = track.scrollWidth / 2;
       if (Math.abs(currentX) >= halfWidth) {
         currentX = 0;
@@ -193,23 +192,23 @@ document.getElementById('enquiryForm').addEventListener('submit', function(e) {
     requestAnimationFrame(animateMarquee);
   }
 
-  // Paandaron ang animation
+
   requestAnimationFrame(animateMarquee);
 
-  // 2. TOUCH EVENTS PARA SA SWIPE
+
   track.addEventListener("touchstart", (e) => {
     isDragging = true;
     startX = e.touches[0].clientX;
-    dragX = currentX; // I-save kung asa dapit gi-touch sa user
+    dragX = currentX; 
   }, { passive: true });
 
   track.addEventListener("touchmove", (e) => {
     if (!isDragging) return;
     
     const diffX = e.touches[0].clientX - startX;
-    currentX = dragX + diffX; // I-update ang posisyon dungan sa tudlo
+    currentX = dragX + diffX; 
     
-    // Boundary check para sa infinite feeling samtang nag-drag
+  
     const halfWidth = track.scrollWidth / 2;
     if (currentX > 0) {
       currentX = -halfWidth;
@@ -222,7 +221,5 @@ document.getElementById('enquiryForm').addEventListener('submit', function(e) {
 
   track.addEventListener("touchend", () => {
     isDragging = false;
-    // DILI nato i-reset ang currentX! 
-    // Inig buhi sa tudlo, ang animateMarquee() magpadayon gikan sa pinakabag-o nga kantidad sa currentX.
   });
 });
