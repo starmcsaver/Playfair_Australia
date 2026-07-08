@@ -3537,3 +3537,9 @@ html, body {
 .gfeature img {
   filter: brightness(1.20);
 }
+
+/* Pause and override the keyframe animation while the user is actively swiping */
+.marquee.is-swiping .marquee-track {
+  animation: none !important;
+  cursor: grabbing;
+}

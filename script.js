@@ -159,3 +159,65 @@ document.getElementById('enquiryForm').addEventListener('submit', function(e) {
         alert('Oops, something went wrong. Please try again.');
       });
   });
+
+  document.addEventListener("DOMContentLoaded", () => {
+  const track = document.querySelector(".marquee-track");
+  const marquee = document.querySelector(".marquee");
+  
+  if (!track || !marquee) return;
+
+  let isDragging = false;
+  let startX = 0;
+  let currentTranslate = 0;
+  let prevTranslate = 0;
+  let animationFrameId = 0;
+
+  // Helper to extract the current translateX value from computed style
+  function getComputedTranslateX() {
+    const style = window.getComputedStyle(track);
+    const matrix = new WebKitCSSMatrix(style.transform);
+    return matrix.m41;
+  }
+
+  // Touch Start
+  track.addEventListener("touchstart", (e) => {
+    isDragging = true;
+    marquee.classList.add("is-swiping");
+    
+    // Capture the exact position the marquee was at during its animation
+    prevTranslate = getComputedTranslateX();
+    startX = e.touches[0].clientX;
+    currentTranslate = prevTranslate;
+    
+    cancelAnimationFrame(animationFrameId);
+  }, { passive: true });
+
+  // Touch Move
+  track.addEventListener("touchmove", (e) => {
+    if (!isDragging) return;
+    
+    const currentX = e.touches[0].clientX;
+    const diffX = currentX - startX;
+    
+    currentTranslate = prevTranslate + diffX;
+    
+    // Optional: Keep boundaries so users don't slide it into empty space
+    const maxScroll = -(track.scrollWidth / 2); 
+    if (currentTranslate > 0) currentTranslate = 0;
+    if (currentTranslate < maxScroll) currentTranslate = maxScroll;
+
+    track.style.transform = `translateX(${currentTranslate}px)`;
+  }, { passive: true });
+
+  // Touch End
+  track.addEventListener("touchend", () => {
+    if (!isDragging) return;
+    isDragging = false;
+    
+    // Smoothly hand back control to the CSS animation after a short delay
+    setTimeout(() => {
+      marquee.classList.remove("is-swiping");
+      track.style.transform = ''; // Reset inline styles so CSS animation takes over
+    }, 1500); 
+  });
+});
