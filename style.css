@@ -59,7 +59,8 @@ a{
 
 /*---FOR SECTION---*/
 .section{
-  padding:100px 0
+  padding:100px 0;
+  scroll-margin-top: 90px;
 }
 
 .section.lav{
@@ -291,6 +292,11 @@ nav {
   color:#fff;
   overflow:hidden;
   text-align:center
+}
+
+#home, 
+.hero-section {
+  margin-top: 90px; /* Pushes the first section down past the navbar */
 }
 
 .hero-bg{
@@ -3298,8 +3304,8 @@ body .center-head.apac-intro .lead {
 
 .inline-media {
     display: flex;
-    align-items: left; /* Aligns the image perfectly with the text */
-    gap: 10px; /* Adds spacing between the image and sentence */
+    align-items: left; 
+    gap: 10px; 
 }
 
 .inline-media img {
@@ -3311,60 +3317,188 @@ body .center-head.apac-intro .lead {
   margin-left: 15px; 
 }
 
-/* 1. Pugngan ang tibuok body nga molapas sa screen */
+/* --- APAC Intro Refinement --- */
+body .center-head.apac-intro {
+  margin-bottom: var(--space-block) !important; 
+}
+
+body .center-head.apac-intro .h1 {
+  color: var(--accent); 
+}
+
+body .center-head.apac-intro .lead {
+  font-size: 20px !important; 
+  line-height: 1.7 !important; 
+  max-width: var(--text-max) !important;
+  text-align: center !important; 
+}
+
+
+.apac-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 24px; 
+  margin-top: var(--space-block) !important; 
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1000px; 
+}
+
+.apac-photo {
+  aspect-ratio: 16/9; 
+  border-radius: var(--radius); 
+  overflow: hidden;
+  background: var(--lav); 
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.apac-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+  display: block;
+
+  image-rendering: pixelated; 
+  transform: scale(1);       
+  filter: contrast(1.02) sharpness(1);
+}
+
+
+.apac-photo:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(74, 29, 99, 0.15); 
+}
+
+
+@media (max-width: 768px) {
+  .apac-gallery {
+    grid-template-columns: 1fr; 
+    gap: 16px; 
+  }
+}
+
+/*---IMAGE ENHANCEMENT---*/
+img {
+  max-width: 100%;
+  height: auto;
+  
+  image-rendering: -webkit-optimize-contrast; 
+  image-rendering: high-quality;          
+  
+
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+
+
+.m-ph img {
+  image-rendering: high-quality;
+  filter: brightness(1.00);
+}
+
+.apac-photo img {
+  image-rendering: high-quality;
+}
+
+.oc-feature-media img {
+  image-rendering: high-quality;
+  filter: brightness(1.05);
+}
+
+.banner img {
+  image-rendering: high-quality;  
+  filter: brightness(1.05); 
+
+}
+
+.gphoto img {
+  filter: brightness(1.10);
+  filter: saturate(-1);
+}
+
+.hero-bg img {
+  filter: brightness(1.10);
+}
+
+
+
+
+/*---DEVICE ORIENTATION---*/
 html, body {
   width: 100%;
-  overflow-x: hidden; /* Kini ang moputol sa bisan unsa nga milapas sa kilid */
+  overflow-x: hidden;
   margin: 0;
   padding: 0;
 }
 
-/* 2. I-adjust ang mga text nga dako ra kaayo kung naa sa mobile view */
+
 @media (max-width: 768px) {
   .eyebrow {
-    font-size: 24px !important; /* Gipagamyan para sakto lang sa mobile screen */
+    font-size: 24px !important; 
   }
   
-  /* Sigurohon nga ang tanang section dili molapas */
+
   .section, .wrap, nav, footer {
     max-width: 100% !important;
     box-sizing: border-box;
   }
+
+  .nav-links {
+    display: flex !important; 
+    flex-direction: column;
+    position: absolute;
+    top: 100%; 
+    left: 0;
+    width: 100%;
+    background: var(--paper); 
+    
+
+    overflow: hidden;
+    max-height: 0; 
+    transition: max-height 0.4s ease-in-out, opacity 0.3s ease;
+    opacity: 0;
+    pointer-events: none; 
+  }
+
+.nav-links.open {
+    margin-top: 0px;
+    max-height: 500px; 
+    opacity: 1;
+    pointer-events: auto; 
+  }
 }
 
-/* --- SAKTONG FIX PARA SA IMONG FOOTER SA MOBILE --- */
+/*MOBILE FOOTER*/
 @media (max-width: 768px) {
-  /* 1. I-stack ang main footer content: Logo sa taas, unya ang duha ka columns sa links sa ubos */
   footer .foot-top {
     display: flex !important;
     flex-direction: column !important;
     gap: 35px !important;
   }
 
-  /* 2. Himoon nato nga magtapad ang "Explore" ug "Contact" nga columns (2 columns) */
-  /* Pangitaon nato ang mga columns human sa logo aron ma-grid sila og tag-duha */
+
   footer .foot-top {
     display: grid !important;
-    grid-template-columns: 1fr !important; /* Sa mobile, i-separate ang Logo text block */
+    grid-template-columns: 1fr !important;
     gap: 30px !important;
   }
 
-  /* Para magtapad ang Explore ug Contact links, atong isulod sa 2-column container layout */
+
   footer .foot-top {
     display: flex !important;
     flex-direction: column !important;
   }
 
-  /* Atong pugson ang mga kolum sa links (Explore ug Contact) nga magtapad */
-  /* Maghimo kita og sub-grid para sa mga kolum sa links */
+
   footer .foot-top {
     display: grid !important;
     grid-template-columns: 1fr !important;
   }
 
-  /* Saktong pamaagi aron magtapad ang duha ka columns (Explore ug Contact) samtang ang Logo mag-inusara sa taas */
+
   footer .foot-top {
-    display: block !important; /* I-reset ang grid sa desktop */
+    display: block !important; 
   }
 
   .foot-logo-block {
@@ -3372,29 +3506,34 @@ html, body {
     width: 100%;
   }
 
-  /* I-target ang duha ka serye sa links (Explore ug Contact) aron magtapad sila og nindot */
+
   footer .foot-top {
     display: flex !important;
     flex-direction: column !important;
   }
-  
-  /* Mas maayo nga pamaagi: Atong usbon ang grid structure sa tibuok `.foot-top` para sa mobile */
+
+
   footer .foot-top {
     display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important; /* Himoon kining 2 columns */
+    grid-template-columns: repeat(2, 1fr) !important; 
     gap: 30px 20px !important;
   }
 
-  /* Ang pinakaunang column (Logo ug Mission Statement) kay hatagan og tibuok 2-column width para naa siya sa taas mag-inusara */
+
   footer .foot-top .foot-col:first-child {
     grid-column: span 2 !important; 
     margin-bottom: 10px;
   }
 
-  /* Sigurohon nga ang mga text ug email dili molapas sa gilapdon sa screen */
+
   footer .foot-col a, footer .foot-mission {
     font-size: 14px !important;
-    word-break: break-word !important; /* Kung taas ang email, automatic mopaubos aron dili maputol */
+    word-break: break-word !important; 
     max-width: 100% !important;
   }
+}
+
+
+.gfeature img {
+  filter: brightness(1.20);
 }
