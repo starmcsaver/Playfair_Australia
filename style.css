@@ -1301,33 +1301,6 @@ footer a {
     margin-top:40px
   }
   
-  .qcard{
-    background:#fff;
-    border:1px solid var(--line);
-    border-radius:16px;
-    padding:26px;
-    display:flex;
-    flex-direction:column
-  }
-  
-  .qcard .qm{
-    color:var(--gold);
-    font-family:Georgia,'Times New Roman',serif;
-    font-size:48px;
-    line-height:.5;
-    height:24px;
-    font-weight:700
-  }
-  
-  .qcard p{
-    font-size:15.5px;
-    color:var(--ink);
-    font-weight:500;
-    margin:8px 0 16px;
-    flex:1;
-    max-width:none
-  }
-
   .qcard .qa{
     font-size:13px;
     font-weight:600;
@@ -1685,11 +1658,10 @@ body.editing .gfeature,body.editing .media{
 }
 
 .ulogoimg{
-  height:50px;
-  width:50px;
+  height:80px;
+  width:auto;
   display:block;
   align-items: center;
-  margin-left: 20px;
 }
 
 .umore{
@@ -1715,7 +1687,7 @@ body.editing .gfeature,body.editing .media{
 
 @media(max-width:620px){
   .ulogoimg{
-    height:32px
+    height:50px
   }
   
   .plabel{
@@ -1939,12 +1911,6 @@ nav .btn-fill:hover{
 
 .qcard{
   border-top:3px solid var(--gold)
-}
-
-.qcard p{
-  font-size:16px;
-  color:var(--ink);
-  font-weight:600
 }
 
 @media(max-width:600px){
@@ -2812,7 +2778,7 @@ h2 {
 .block p,
 .ccard p,
 .qcard p {
-  font-size: 16px !important;
+  font-size: 20px !important;
   line-height: 1.7 !important;
 }
 
@@ -3550,6 +3516,7 @@ html, body {
   cursor: grabbing;
 }
 
+/*TESTIMONIAL SECTION*/
 
 /*--TESTIMONIAL TQ TEXT--*/
 /* Carousel Container Wrapper */
@@ -3558,7 +3525,7 @@ html, body {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  overflow: hidden; /* Gi-fix ang broken comment nga '/' */
+  overflow: hidden; 
   padding: 40px 20px; /* Gidugangan og sideway padding aron dili maputol ang card shadows */
 }
 
@@ -3572,24 +3539,121 @@ html, body {
 .testi-card-item {
   width: 600px; 
   max-width: 75vw;
-  margin: 0 15px; /* Gidugangan og horizontal margin aron naay breathing room ang cards */
+  margin: 0 15px;
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-top: 4px solid var(--gold);
   border-radius: 20px;
-  padding: 40px;
-  text-align: center;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-  position: relative; /* Gi-ensure ang saktong positioning sa .bigmark */
+  position: relative; 
+  padding: 35px; /* Gi-unify ang padding */
+  text-align: left; /* Gi-left align para mas nindot tan-awon ang profile headers */
   
   transform: scale(0.85); 
   opacity: 0.4;
   transition: transform 0.6s ease, opacity 0.6s ease, background-color 0.4s;
 }
 
+/* ==========================================================================
+   ADDED/FIXED VISIBILITY STYLES FOR USER PROFILE & UNIVERSITY LOGO
+   ========================================================================== */
+
+/* 1. Header Wrapper */
+.testi-profile-header {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; 
+  margin-bottom: 25px;
+  width: 100%;
+}
+
+/* Flex layout para sa Avatar ug Pangalan*/
+.profile-top-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* 2. User Container */
+.user-container {
+  margin-top: 20px;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.1);
+  flex-shrink: 0; 
+}
+
+.user-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+  display: block;
+}
+
+/* 3. User Details */
+.user-details {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.user-name {
+  font-size: 25px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.user-details .title {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 2px;
+}
+
+/* 4. Logo Wrapper*/
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  background: rgba(255, 255, 255, 0.03); 
+  border-radius: 10px;
+  width: 70%; 
+}
+
+.logo-img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain; 
+}
+
+/* 5. Uni Text Block */
+.text-block {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1; 
+  text-align: left;
+}
+
+.spotlight {
+  font-size: 200px; 
+  font-weight: 800; 
+  text-transform: uppercase;
+  color: var(--gold);
+  letter-spacing: 0.7px;
+  display: block;
+}
+
+.subtext {
+  font-size: 15px; 
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 5px; 
+}
+
+/* ========================================================================== */
+
 /* --- DESKTOP ARROW BUTTONS --- */
 .testi-arrow {
-  display: none; /* Gi-hide by default para sa mobile view */
+  display: none; 
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -3627,7 +3691,7 @@ html, body {
     display: flex; /* Pakit-on lang ang mga arrows kung desktop view */
   }
   .testi-carousel-container {
-    padding: 40px 80px; /* Gidugangan ang space sa kilid para dili ma-overlap sa arrows ang cards */
+    padding: 20px 20px;
   }
 }
 
@@ -3708,120 +3772,264 @@ html, body {
   }
 }
 
+/* --- TESTI CAROUSEL ANIMATION--- */
+.testi-carousel-container.reveal {
+  opacity: 0;
+  transform: translateY(40px); 
+  transition: opacity 0.85s cubic-bezier(0.215, 0.610, 0.355, 1), 
+              transform 0.85s cubic-bezier(0.215, 0.610, 0.355, 1);
+  will-change: opacity, transform;
+}
+
+.testi-carousel-container.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.testi-card-item.reveal {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+.dots.center.reveal {
+  opacity: 0;
+  transform: translateY(40px); 
+  transition: opacity 0.8s cubic-bezier(0.215, 0.610, 0.355, 1), 
+              transform 0.8s cubic-bezier(0.215, 0.610, 0.355, 1);
+}
+
+.dots.center.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 
-/* --- CREATIVE REACTION GALLERY PLACEHOLDERS --- */
-.reaction-gallery {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-  margin-top: 60px;
+
+
+
+/*---Q-CARD---*/
+
+.testi-section .qcard {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+}
+
+
+
+/* Container para sa mga testimonial cards */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns sa desktop view */
+    gap: 20px;
+    width: 100%;
+    padding: 20px 0;
+    box-sizing: border-box;
+}
+
+/* Estilo para sa bawat qcard para masigurong maayos ang hitsura */
+.qcard-columns {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-top: 4px solid var(--gold);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    width: 100%;
+}
+.qcard-columns.active {
+  opacity: 1 !important;
+  transform: scale(1) !important; 
+  background: rgba(255, 255, 255, 0.14) !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3) !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  z-index: 2;
+}
+
+/* Quote Text*/
+.qcard-columns .quote-text {
+  font-size: 20px !important; 
+  font-weight: 500 !important;
+  line-height: 1.6 !important;
+  color: var(--paper) !important;
+  font-style: italic !important;
+  margin: 0 0 24px 0 !important;
+  padding: 0 !important;
+  display: block !important;
+  text-align: left !important;
+}
+
+.qcard-columns .quote-text::before {
+  content: "“";
+  display: inline-block;
+  font-family: "Georgia", serif;
+  font-size: 2em;
+  line-height: 0;
+  vertical-align: -0.1em;
+  margin-right: 4px;
+  color: var(--gold-deep);
+}
+
+.qcard-columns .quote-text::after {
+  content: "”";
+  display: inline-block;
+  font-family: "Georgia", serif;
+  font-size: 2em;
+  line-height: 0;
+  vertical-align: -0.35em;
+  margin-left: 2px;
+  color: var(--gold-deep); 
+}
+
+/* Profile / Author Header Alignments */
+.qcard-profile-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; 
+  gap: 14px;
   width: 100%;
+  padding-left: 0 !important;
+  margin-top: 5px
 }
 
-/* Base card wrapping framework */
-.reaction-img-wrapper {
-  position: relative;
-  height: 380px; /* Eksaktong taas para sa magandang aspect-ratio */
-  border-radius: 24px;
-  overflow: hidden;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.08));
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.5s ease, border-color 0.4s;
+.user-avatar-container {
+  background: rgba(255, 255, 255, 0.1);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden; 
+  flex-shrink: 0;
 }
 
-/* Creative Layout: Asymmetric sizing para hindi boring at flat tingnan */
-.reaction-img-wrapper.item-center {
-  height: 420px; /* Mas mataas ang gitna para magkaroon ng visual rhythm */
-  top: -20px;    /* Naka-angat nang bahagya */
-  border-top: 3px solid var(--gold, #FDB813); /* Gold touch indicator */
-}
-
-.reaction-img-wrapper.item-left {
-  border-top: 3px solid var(--accent, #6B2C91); /* Purple touch indicator */
-}
-
-.reaction-img-wrapper.item-right {
-  border-top: 3px solid var(--accent-light, #9D5FC4); /* Light purple touch indicator */
-}
-
-/* Inner placeholder design grid layout */
-.img-placeholder {
+.user-avatar-img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
+}
+
+.profile-details {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  position: relative;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px);
-  background-size: 20px 20px; /* Dot-matrix background blueprint pattern */
+  align-items: flex-start; 
+  gap: 2px !important; 
+  text-align: left; 
 }
 
-/* Star or geometric branding icon */
-.placeholder-icon {
-  font-size: 32px;
-  color: rgba(255, 255, 255, 0.2);
-  margin-bottom: 12px;
-  transition: transform 0.6s ease, color 0.4s ease;
+.profile-user-name {
+  font-size: 20px !important;
+  font-weight: 700;
+  color: var(--paper) !important; 
+  line-height: 1.2;
 }
 
-/* Text tags indicators */
-.placeholder-tag {
-  font-size: 13px;
+.profile-title {
+  font-size: 12px !important;
+  font-style:oblique; 
   font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.4);
-  background: rgba(0, 0, 0, 0.2);
-  padding: 8px 16px;
-  border-radius: 30px;
+  color: var(--line) !important; 
+  line-height: 1.2;
+  margin-bottom: 0 !important;
+}
+
+/* --- COHESIVE Q-CARD UNIVERSITY LOGO --- */
+.uni-logo-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  max-width: 100%;
+  justify-content: flex-start;
+  background: rgba(0, 0, 0, 0.023);
+  padding: 6px 12px;
+  border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.05);
-  transition: all 0.4s ease;
+  margin: 0 auto 20px auto;
 }
 
-/* --- CREATIVE HOVER INTERACTION MODIFIERS --- */
-.reaction-img-wrapper:hover {
-  transform: translateY(-8px) scale(1.02);
-  border-color: rgba(255, 255, 255, 0.3);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
-  cursor: pointer;
+.uni-logo-img {
+  max-height: 35px;
+  width: auto;
+  object-fit: contain;
 }
 
-.reaction-img-wrapper:hover .placeholder-icon {
-  transform: rotate(180deg) scale(1.2);
-  color: var(--gold, #FDB813);
+.uni-text-block {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
 }
 
-.reaction-img-wrapper:hover .placeholder-tag {
-  color: #FFF;
-  background: var(--accent, #6B2C91);
-  box-shadow: 0 0 15px rgba(107, 44, 145, 0.4);
+.uni-spotlight {
+  color: var(--gold);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-/*reaction gallery image*/
-.reaction-gallery img {
+.uni-subtext {
+  color: var(--lav);
+  font-size: 11px;
+  opacity: 115;
+}
+
+.card-divider {
+  border: none;
+  height: 3px; 
   width: 100%;
-  height: 100%;
-  object-fit: cover; 
-  object-position: center; 
-  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  background: linear-gradient(
+    90deg, 
+    rgba(251, 192, 45, 0) 0%, 
+    rgba(251, 192, 45, 0.8) 20%, 
+    rgba(251, 192, 45, 0.4) 70%, 
+    rgba(251, 192, 45, 0) 100%
+  );
+  opacity: 0.85; 
+  margin-bottom: 20px;
+  flex-shrink: 0; 
 }
 
-.reaction-img-wrapper:hover .gallery-photo {
-  transform: scale(1.08);
+/* --- MOBILE RESPONSIVENESS BREAKPOINTS --- */
+@media (max-width: 768px) {
+    .grid-container {
+
+        grid-template-columns: 1fr; 
+        gap: 16px; 
+        padding: 10px 0;
+    }
+
+    .qcard-columns {
+        width: 100%; 
+        max-width: 100%;
+        padding: 18px; 
+    }
+    
+
+    .uni-logo-wrapper {
+        flex-wrap: wrap; 
+        gap: 8px;
+    }
 }
 
-/* --- MOBILE RESPONSIVE ADAPTABILITY BREAKPOINT --- */
-@media (max-width: 992px) {
-  .reaction-gallery {
-    grid-template-columns: 1fr; 
-    gap: 20px;
-    margin-top: 40px;
-  }
-  .reaction-img-wrapper, 
-  .reaction-img-wrapper.item-center {
-    height: 250px;
-    top: 0; 
-  }
+/* --- Q-CARD COLUMNS ANIMATION --- */
+
+.qcard-columns.reveal {
+  opacity: 0;
+  transform: translateY(40px); 
+  transition: opacity 0.8s cubic-bezier(0.215, 0.610, 0.355, 1), 
+              transform 0.8s cubic-bezier(0.215, 0.610, 0.355, 1);
+}
+
+.qcard-columns.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
 }

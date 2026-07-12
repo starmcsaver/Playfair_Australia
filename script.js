@@ -213,19 +213,60 @@ document.getElementById('enquiryForm').addEventListener('submit', function(e) {
 });
 
 
-// ========================================================
-// --- FIXED TESTIMONIALS CAROUSEL CODE WITH ARROWS ---
-// ========================================================
+// --- TESTIMONIALS CAROUSEL ---
+
 if (document.getElementById('testiTrack')) {
+  // 1. Gi-update ang array aron masudlan sa gikinahanglan nga image ug university text structures
   var quotes = [
-    { t: "The energy and activities truly helped ease nerves and build a sense of community from day one. The next morning, you could tell they had found someone to connect to.", w: "Megan Huston", r: "Senior Coordinator for Orientation · CSU San Bernardino" },
-    { t: "The best part of welcome week was Playfair. It helped our students meet people they're still friends with.", w: "Tayler Keitzer", r: "Director of First-Year Experience · Simpson College" },
-    { t: "We brought Playfair back after COVID as the intentional social interaction our students needed. Years later, it's the best thing we do for them.", w: "Jessica J. Gerum", r: "Associate Director, Major Events · University of Connecticut" },
-    { t: "Playfair was a wonderful foundation for our first-year students. They had a blast and were still talking about it that evening.", w: "Allene Shapiro", r: "Coordinator for Community Engagement · Ramapo College" },
-    { t: "Everyone I talked to loved Playfair. It set the exact tone we needed for the start of the year. We can't wait to bring you back next year.", w: "Julie Roberson", r: "Assistant Dean for Student Engagement · King University" }
+    { 
+      t: "The energy and activities truly helped ease nerves and build a sense of community from day one. The next morning, you could tell they had found someone to connect to.", 
+      w: "Megan Huston", 
+      r: "Senior Coordinator for Orientation",
+      avatar: "user icon/icon.png",
+      logo: "Testimonials/univ logo/UMSD.png",
+      uniSpotlight: "University",
+      uniSubtext: "of Minnesota School of Dentistry"
+    },
+    { 
+      t: "The best part of welcome week was Playfair. It helped our students meet people they're still friends with.", 
+      w: "Tayler Keitzer", 
+      r: "Director of First-Year Experience",
+      avatar: "user icon/icon.png",
+      logo: "Testimonials/univ logo/SC.png",
+      uniSpotlight: "Simpson",
+      uniSubtext: "College"
+    },
+    { 
+      t: "We brought Playfair back after COVID as the intentional social interaction our students needed. Years later, it's the best thing we do for them.", 
+      w: "Jessica J. Gerum", 
+      r: "Associate Director for Major Events & Programs",
+      avatar: "user icon/icon.png",
+      logo: "Testimonials/univ logo/UCON.png",
+      uniSpotlight: "University",
+      uniSubtext: "of Connecticut"
+    },
+    { 
+      t: "Playfair was a wonderful foundation for our first-year students. They had a blast and were still talking about it that evening.", 
+      w: "Allene Shapiro", 
+      r: "Coordinator for Community Engagement",
+      avatar: "user icon/icon.png",
+      logo: "Testimonials/univ logo/RC.png",
+      uniSpotlight: "Ramapo",
+      uniSubtext: "College"
+    },
+    { 
+      t: "Everyone I talked to loved Playfair. It set the exact tone we needed for the start of the year. We can't wait to bring you back next year.", 
+      w: "Julie Roberson", 
+      r: "Assistant Dean for Student Engagement",
+      avatar: "user icon/icon.png",
+      logo: "Testimonials/univ logo/KU.jpg",
+      uniSpotlight: "King",
+      uniSubtext: "University"
+    }
   ];
 
-  var qi = 0;
+  var N = quotes.length;
+  var qi = 3; 
   var containerEl = document.getElementById('testiCarouselContainer');
   var trackEl = document.getElementById('testiTrack');
   var dotsEl = document.getElementById('tqDots');
@@ -235,72 +276,115 @@ if (document.getElementById('testiTrack')) {
   var currentTranslate = 0;
   var prevTranslate = 0;
   var animationID = 0;
+  var startY = 0;
+  var isScrollingVertical = false;
 
-  // I-initialize ug i-render ang tanang cards sa sulod sa track
   function initCarousel() {
     trackEl.innerHTML = '';
-    quotes.forEach(function (q) {
+    
+    var extendedQuotes = [];
+    
+    // Ang cloning functionality para sa infinite layout
+    extendedQuotes.push(quotes[N - 3]);
+    extendedQuotes.push(quotes[N - 2]);
+    extendedQuotes.push(quotes[N - 1]);
+    
+    quotes.forEach(function(q) { extendedQuotes.push(q); });
+    
+    extendedQuotes.push(quotes[0]);
+    extendedQuotes.push(quotes[1]);
+    extendedQuotes.push(quotes[2]);
+
+    // 2. Gi-update ang HTML structure dinhi aron ma-visible ang tanan nimong gipangayo nga classes
+    extendedQuotes.forEach(function (q) {
       var card = document.createElement('div');
       card.className = 'testi-card-item';
       card.innerHTML = `
+        <div class="testi-profile-header">
+          <div class="profile-top-row">
+            <div class="user-container">
+              <img src="${q.avatar}" alt="${q.w}" class="user-avatar-img">
+            </div>
+            <div class="user-details">
+              <span class="user-name">${q.w}</span>
+              <span class="title">${q.r}</span>
+            </div>
+          </div>
+          <div class="logo-wrapper">
+            <img src="${q.logo}" alt="${q.uniSubtext} Logo" class="logo-img">
+            <div class="uni-text-block">
+              <span class="uni-spotlight">${q.uniSpotlight}</span>
+              <span class="uni-subtext">${q.uniSubtext}</span>
+            </div>
+          </div>
+        </div>
         <div class="bigmark">“</div>
-        <div class="q">${q.t}</div>
-        <div class="who"><b>${q.w}</b><br>${q.r}</div>
+        <p class="q">${q.t}</p>
       `;
       trackEl.appendChild(card);
     });
+    
+    qi = 3; 
+    
     renderDots();
-    updateCarouselPosition();
-    setupArrowButtons(); // Gipagana ang arrow listeners dinhi
+    trackEl.style.transition = 'none';
+    updateCarouselPosition(); 
+    setupArrowButtons();
   }
 
-  // Pag-setup sa Dots navigation
   function renderDots() {
     if (!dotsEl) return;
     dotsEl.innerHTML = '';
     quotes.forEach(function (_, i) {
       var b = document.createElement('button');
-      b.className = 'dot' + (i === qi ? ' active' : '');
+      b.className = 'dot' + ((i + 3) === qi ? ' active' : '');
       b.setAttribute('aria-label', 'Quote ' + (i + 1));
       b.onclick = function () {
-        qi = i;
+        qi = i + 3;
+        trackEl.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)';
         updateCarouselPosition();
+        updateActiveDot();
       };
       dotsEl.appendChild(b);
     });
   }
 
-  // --- ARROW BUTTON INTERACTION LOGIC (MAO KINI ANG NAGPA-NEXT) ---
+  function updateActiveDot() {
+    if (!dotsEl) return;
+    var dots = dotsEl.querySelectorAll('.dot');
+    var realIndex = (qi - 3 + N) % N;
+
+    dots.forEach(function(dot, idx) {
+      dot.classList.toggle('active', idx === realIndex);
+    });
+  }
+
   function setupArrowButtons() {
     var prevBtn = document.getElementById('testiPrevBtn');
     var nextBtn = document.getElementById('testiNextBtn');
 
     if (prevBtn) {
       prevBtn.onclick = function(e) {
-        e.stopPropagation(); // Likayan nga mag-conflict sa drag gestures
-        if (qi > 0) {
-          qi--;
-        } else {
-          qi = quotes.length - 1; // Mobalik sa katapusan kung i-click ang prev sa sugod
-        }
-        updateCarouselPosition();
+        e.stopPropagation(); 
+        navigateCarousel(-1);
       };
     }
 
     if (nextBtn) {
       nextBtn.onclick = function(e) {
-        e.stopPropagation(); // Likayan nga mag-conflict sa drag gestures
-        if (qi < quotes.length - 1) {
-          qi++;
-        } else {
-          qi = 0; // Mobalik sa sugod kung maabot na sa pinaka-katapusan
-        }
-        updateCarouselPosition();
+        e.stopPropagation();
+        navigateCarousel(1);
       };
     }
   }
 
-  // Kalkulahon ang center transition base sa pinili nga active card
+  function navigateCarousel(direction) {
+    qi += direction;
+    trackEl.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)';
+    updateCarouselPosition();
+    updateActiveDot();
+  }
+
   function updateCarouselPosition() {
     var cards = document.querySelectorAll('.testi-card-item');
     if (!cards.length) return;
@@ -309,15 +393,10 @@ if (document.getElementById('testiTrack')) {
       card.classList.toggle('active', idx === qi);
     });
 
-    if (dotsEl) {
-      var dots = dotsEl.querySelectorAll('.dot');
-      dots.forEach(function(dot, idx) {
-        dot.classList.toggle('active', idx === qi);
-      });
-    }
-
     var containerWidth = containerEl.offsetWidth;
     var activeCard = cards[qi];
+    if (!activeCard) return;
+    
     var cardWidth = activeCard.offsetWidth;
     var cardLeft = activeCard.offsetLeft;
 
@@ -327,10 +406,28 @@ if (document.getElementById('testiTrack')) {
     trackEl.style.transform = 'translateX(' + currentTranslate + 'px)';
   }
 
+  trackEl.addEventListener('transitionend', function() {
+    var cards = document.querySelectorAll('.testi-card-item');
+    
+    if (qi >= cards.length - 3) {
+      trackEl.style.transition = 'none';
+      qi = qi - N; 
+      void trackEl.offsetWidth; 
+      updateCarouselPosition();
+    } 
+    
+    else if (qi <= 2) {
+      trackEl.style.transition = 'none';
+      qi = qi + N; 
+      void trackEl.offsetWidth; 
+      updateCarouselPosition();
+    }
+  });
+
   // --- MOUSE & TOUCH DRAG INTERACTION ---
-  containerEl.addEventListener('touchstart', dragStart);
+  containerEl.addEventListener('touchstart', dragStart, { passive: false });
   containerEl.addEventListener('touchend', dragEnd);
-  containerEl.addEventListener('touchmove', dragMove);
+  containerEl.addEventListener('touchmove', dragMove, { passive: false });
 
   containerEl.addEventListener('mousedown', dragStart);
   containerEl.addEventListener('mouseup', dragEnd);
@@ -341,19 +438,40 @@ if (document.getElementById('testiTrack')) {
     return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
   }
 
+  function getPositionY(event) {
+    return event.type.includes('mouse') ? event.pageY : event.touches[0].clientY;
+  }
+
   function dragStart(event) {
-    if (event.target.closest('.testi-arrow')) return; // Dili i-drag kung ang arrow button ang gi-click
+    if (event.target.closest('.testi-arrow')) return; 
     isDragging = true;
+    isScrollingVertical = false;
     startX = getPositionX(event);
+    startY = getPositionY(event);
     trackEl.style.transition = 'none'; 
     animationID = requestAnimationFrame(animation);
   }
 
   function dragMove(event) {
     if (!isDragging) return;
+    
     var currentX = getPositionX(event);
-    var diff = currentX - startX;
-    currentTranslate = prevTranslate + diff;
+    var currentY = getPositionY(event);
+    var diffX = currentX - startX;
+    var diffY = currentY - startY;
+
+    if (!isScrollingVertical && Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 10) {
+      isScrollingVertical = true;
+      isDragging = false;
+      cancelAnimationFrame(animationID);
+      return;
+    }
+
+    if (event.cancelable) {
+      event.preventDefault();
+    }
+    
+    currentTranslate = prevTranslate + diffX;
   }
 
   function dragEnd() {
@@ -361,15 +479,18 @@ if (document.getElementById('testiTrack')) {
     isDragging = false;
     cancelAnimationFrame(animationID);
 
-    trackEl.style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
     var movedBy = currentTranslate - prevTranslate;
 
-    if (movedBy < -50 && qi < quotes.length - 1) {
+    trackEl.style.transition = 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)';
+
+    if (movedBy < -40) {
       qi++;
-    } else if (movedBy > 50 && qi > 0) {
+    } else if (movedBy > 40) {
       qi--;
     }
+    
     updateCarouselPosition();
+    updateActiveDot();
   }
 
   function animation() {
@@ -379,6 +500,10 @@ if (document.getElementById('testiTrack')) {
     }
   }
 
-  window.addEventListener('resize', updateCarouselPosition);
+  window.addEventListener('resize', function() {
+    trackEl.style.transition = 'none';
+    updateCarouselPosition();
+  });
+  
   initCarousel();
 }
