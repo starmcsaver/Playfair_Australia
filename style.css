@@ -4478,7 +4478,7 @@ html, body {
   }
   
   .uni-logo-wrapper {
-    max-width: 95%;
+    max-width: 100%;
     padding: 8px 16px;
   }
 }
