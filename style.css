@@ -4477,24 +4477,33 @@ html, body {
     padding: 30px 15px;
   }
   
+  .qcard {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    box-sizing: border-box !important;
+  }
 
   .uni-logo-wrapper {
-    max-width: 100%;        
-    width: 100%;            
-    box-sizing: border-box; 
-    overflow: hidden;       
+    width: 90% !important;       
+    max-width: 100% !important;   
+    margin: 0 auto !important;    
+    box-sizing: border-box !important;
+    display: flex !important;     
+    align-items: center;
+    padding: 10px 15px !important; 
   }
 
   
+  .uni-logo-wrapper img,
+  .uni-logo-wrapper .uni-logo {   
+    max-width: 40px !important;   
+    height: auto !important;
+  }
+
   .uni-spotlight, 
   .uni-subtext {
-    display: block;
-    width: 100%;            
-    max-width: 100%;        
-    box-sizing: border-box;
-    white-space: normal;    
-    word-wrap: break-word;  
-    overflow-wrap: break-word;
+    white-space: normal !important;
+    word-break: break-word !important;
   }
 }
 
