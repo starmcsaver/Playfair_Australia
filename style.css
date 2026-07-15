@@ -4477,9 +4477,24 @@ html, body {
     padding: 30px 15px;
   }
   
+
   .uni-logo-wrapper {
-    max-width: 100%;
-    padding: 8px 16px;
+    max-width: 100%;        
+    width: 100%;            
+    box-sizing: border-box; 
+    overflow: hidden;       
+  }
+
+  
+  .uni-spotlight, 
+  .uni-subtext {
+    display: block;
+    width: 100%;            
+    max-width: 100%;        
+    box-sizing: border-box;
+    white-space: normal;    
+    word-wrap: break-word;  
+    overflow-wrap: break-word;
   }
 }
 
