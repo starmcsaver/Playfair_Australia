@@ -57,6 +57,49 @@ a{
   }
 }
 
+
+.playfair-hero-header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+/* Styling for "The ultimate icebreaker..." text */
+.pf-eyebrow {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .18em;
+  color: var(--pf-eyebrow-color);
+}
+
+/* Styling for "WHAT IS PLAYFAIR?" */
+.pf-title {
+  font-size: clamp(20px, 3.5vw, 30px) !important; 
+  font-weight: 800 !important;
+  line-height: 1.2;
+  letter-spacing: 0.05em !important; 
+  
+  /* Text Color */
+  color: #FFFFFF !important; 
+  display: inline-block !important; 
+  
+  /*Background color*/
+  background: color-mix(in srgb, var(--color-gold) 50%, transparent) !important; 
+  backdrop-filter: blur(5px);
+  
+  /*Padding and Spacing*/
+  padding: 10px 24px;                 
+  border-radius: 8px;                
+  margin-top: 30px !important;
+  margin-bottom: -11px !important;
+  
+  text-shadow: none !important;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
 /*---FOR SECTION---*/
 .section{
   padding:100px 0;
@@ -296,7 +339,7 @@ nav {
 
 #home, 
 .hero-section {
-  margin-top: 90px; /* Pushes the first section down past the navbar */
+  margin-top: 90px; 
 }
 
 .hero-bg{
@@ -428,42 +471,199 @@ nav {
   margin:28px 0 10px
 }
 
-.blocks{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:22px;
-  margin-top:46px;
-  text-align:left
+/* Container Layout */
+.blocks.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr) !important;
+  gap: 0px !important;
+  margin-top: 56px;
+  text-align: center;
+  align-items: stretch;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
 }
 
-.block{
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:16px;
-  padding:28px 26px;
-  transition:transform .25s,box-shadow .25s
+/* Individual Card Block */
+.blocks.grid-4 .block {
+  border-radius: 8px;
+  margin: 0 4px;
+  overflow: visible !important; 
+  position: relative;
+  min-height: 440px; 
+  /* Smooth transform */
+transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1);s
 }
 
-.block:hover{
-  transform:translateY(-4px);
-  box-shadow:0 16px 36px rgba(107,44,145,.10)
+/* Layering & Overlap Management (Normal View) */
+.blocks.grid-4 .block:nth-child(1) { z-index: 6; }
+.blocks.grid-4 .block:nth-child(2) { z-index: 5; }
+.blocks.grid-4 .block:nth-child(3) { z-index: 4; }
+.blocks.grid-4 .block:nth-child(4) { z-index: 3; }
+.blocks.grid-4 .block:nth-child(5) { z-index: 2; }
+.blocks.grid-4 .block:nth-child(6) { z-index: 1; }
+
+/* HOVER ACTION */
+.blocks.grid-4 .block:hover {
+
+  transform: translateY(-12px); 
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1); 
 }
 
-.block .t{
-  font-size:12px;
-  font-weight:600;
-  text-transform:uppercase;
-  letter-spacing:.12em;
-  color:var(--accent);
-  margin-bottom:10px
+/* Arrow Headers (Chevron Shapes)*/
+.blocks.grid-4 .block .arrow-header {
+  position: absolute !important;
+  top: 0;
+  left: -4px; 
+  width: calc(100% + 20px) !important; 
+  padding: 20px 0 28px 0; 
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 28px; 
+  clip-path: polygon(0% 0%, calc(100% - 16px) 0%, 100% 50%, calc(100% - 16px) 100%, 0% 100%, 16px 50%) !important;
+  z-index: 3; 
 }
 
-.block h3{
-  margin-bottom:8px
+/* First Card Arrow Setup */
+.blocks.grid-4 .block:first-child .arrow-header {
+  width: calc(100% + 12px) !important;
+  left: -4px;
+  clip-path: polygon(0% 0%, calc(100% - 16px) 0%, 100% 50%, calc(100% - 16px) 100%, 0% 100%) !important;
 }
 
-.block p{
-  font-size:15px
+/* Last Card Arrow Setup */
+.blocks.grid-4 .block:last-child .arrow-header {
+  width: calc(100% + 20px) !important;
+  left: -4px;
+  clip-path: polygon(0% 0%, calc(100% - 16px) 0%, 100% 50%, calc(100% - 16px) 100%, 0% 100%, 16px 50%) !important;
+}
+
+/* Component Elements & Typography*/
+/* Step Circle */
+.blocks.grid-4 .block .step-circle {
+  width: 46px; 
+  height: 46px;
+  background: #ffffff;
+  border-radius: 50%;
+  position: absolute;
+  top: 66px; 
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  z-index: 99 !important; 
+}
+
+/* Typography styles */
+.blocks.grid-4 .block .t {
+  font-size: 11px !important;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-top: 125px !important; 
+  margin-bottom: 8px !important;
+  margin-left: 6px !important;
+  margin-right: 6px !important;
+  position: relative;
+  z-index: 2; 
+  white-space: normal !important;
+}
+
+.blocks.grid-4 .block h3 {
+  font-size: 15px !important; 
+  font-weight: 700;
+  margin: 0 6px 12px 6px !important;
+  color: #1c1b22;
+  line-height: 1.3;
+  position: relative;
+  z-index: 2;
+  white-space: normal !important;
+  word-break: break-word !important; 
+}
+
+.blocks.grid-4 .block p {
+  font-size: 13px !important;
+  line-height: 1.5;
+  margin: 0 6px !important;
+  color: #4b4955;
+  position: relative;
+  z-index: 2;
+  flex-grow: 1; 
+}
+
+/* ==========================================================================
+   Color Themes
+   ========================================================================== */
+.blocks.grid-4 .block:nth-child(1) { background-color: #fbf6dd !important; }
+.blocks.grid-4 .block:nth-child(1) .arrow-header { background-color: #e5b824; }
+.blocks.grid-4 .block:nth-child(1) .t { color: #b78f0d; }
+.blocks.grid-4 .block:nth-child(1) .step-circle { color: #e5b824; font-weight: bold; }
+
+.blocks.grid-4 .block:nth-child(2) { background-color: #f7e6d4 !important; }
+.blocks.grid-4 .block:nth-child(2) .arrow-header { background-color: #dc7928; }
+.blocks.grid-4 .block:nth-child(2) .t { color: #b05a16; }
+.blocks.grid-4 .block:nth-child(2) .step-circle { color: #dc7928; font-weight: bold; }
+
+.blocks.grid-4 .block:nth-child(3) { background-color: #f9e2e5 !important; }
+.blocks.grid-4 .block:nth-child(3) .arrow-header { background-color: #cc3b4d; }
+.blocks.grid-4 .block:nth-child(3) .t { color: #a32636; }
+.blocks.grid-4 .block:nth-child(3) .step-circle { color: #cc3b4d; font-weight: bold; }
+
+.blocks.grid-4 .block:nth-child(4) { background-color: #f1dfeb !important; }
+.blocks.grid-4 .block:nth-child(4) .arrow-header { background-color: #b94487; }
+.blocks.grid-4 .block:nth-child(4) .t { color: #942d67; }
+.blocks.grid-4 .block:nth-child(4) .step-circle { color: #b94487; font-weight: bold; }
+
+.blocks.grid-4 .block:nth-child(5) { background-color: #eae3f0 !important; }
+.blocks.grid-4 .block:nth-child(5) .arrow-header { background-color: #7b4ca2; }
+.blocks.grid-4 .block:nth-child(5) .t { color: #5f3482; }
+.blocks.grid-4 .block:nth-child(5) .step-circle { color: #7b4ca2; font-weight: bold; }
+
+.blocks.grid-4 .block:nth-child(6) { background-color: #dbe4f3 !important; }
+.blocks.grid-4 .block:nth-child(6) .arrow-header { background-color: #2b4689; }
+.blocks.grid-4 .block:nth-child(6) .t { color: #1c3266; }
+.blocks.grid-4 .block:nth-child(6) .step-circle { color: #2b4689; font-weight: bold; }
+
+/* ==========================================================================
+   Responsive Layout FOR GRID-4 (Mobile & Tablet)
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .blocks.grid-4 { 
+    grid-template-columns: repeat(2, 1fr) !important; 
+    gap: 30px 20px !important; 
+  }
+  .blocks.grid-4 .block { 
+    margin: 0 !important; 
+    min-height: auto !important; 
+  }
+  .blocks.grid-4 .block .arrow-header,
+  .blocks.grid-4 .block:first-child .arrow-header,
+  .blocks.grid-4 .block:last-child .arrow-header {
+    clip-path: none !important;
+    width: 100% !important;
+    left: 0 !important;
+    border-radius: 8px 8px 0 0;
+    padding: 14px 0 20px 0;
+  }
+  .blocks.grid-4 .block .step-circle { top: 48px !important; }
+  .blocks.grid-4 .block .t { margin-top: 110px !important; }
+  
+  .blocks.grid-4 .block:hover { 
+    transform: none !important; 
+    box-shadow: none !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .blocks.grid-4 { 
+    grid-template-columns: 1fr !important; 
+    gap: 35px !important; 
+  }
+  .blocks.grid-4 .block .t { margin-top: 105px !important; }
 }
 
 .checklist{
@@ -1787,7 +1987,7 @@ nav .btn-fill:hover{
   }
 }
 
-/* Gallery: uniform aligned grid, consistent sizing, gentle crop to keep faces, no gaps */
+/* Gallery Section for Photo*/
 .gfeature{
   margin-top:24px;
   border-radius:14px;
@@ -1853,7 +2053,7 @@ nav .btn-fill:hover{
   }
 }
 
-/* --- refinement pass 2 --- */
+
 .btns.center{
   gap:18px;
   align-items:center
@@ -1929,7 +2129,7 @@ nav .btn-fill:hover{
   }
 }
 
-/* --- refinement pass 3 --- */
+
 .section.stats{
   padding:54px 0
 }
@@ -1991,7 +2191,7 @@ nav .btn-fill:hover{
   box-shadow:0 18px 40px rgba(107,44,145,.10)
 }
 
-/* --- refinement pass 4 --- */
+
 .oc-split{
   grid-template-columns:0.72fr 1.28fr;
   gap:52px;
@@ -2038,7 +2238,7 @@ nav .btn-fill:hover{
   }
 }
 
-/* --- refinement pass 6 --- */
+
 .btns{
   justify-content:center
 }
@@ -2095,7 +2295,7 @@ nav .btn-fill:hover{
 }
 
 
-/* --- pass 9 (design polish) --- */
+
 .oc-cols{
   column-count:2;
   column-gap:50px;
@@ -2158,10 +2358,6 @@ nav .btn-fill:hover{
   text-align:center
 }
 
-/* ── FINAL QA POLISH PASS ─────────────────────────────────────
-   Visual-only refinements: measure, rhythm, optical alignment.
-   No structure, copy, color, or component changes. */
-
 .article p,.oc-cols p,p{
   line-height:1.75
 }
@@ -2178,7 +2374,7 @@ nav .btn-fill:hover{
   max-width:48ch
 }
 
-/* Centered lead paragraphs: balanced line breaks, not justified */
+/* Centered lead paragraphs */
 .center-head .lead,.hero-content .lead,.testi-section .center-head .lead{
   max-width:54ch;
   line-height:1.7;
@@ -2193,7 +2389,7 @@ nav .btn-fill:hover{
   line-height:1.42
 }
 
-/* Card internal rhythm: identical vertical spacing + equal height within row */
+/* Card internal rhythm */
 .cards,.blocks,.qgrid{
   align-items:stretch
 }
@@ -2212,7 +2408,7 @@ nav .btn-fill:hover{
   margin-top:auto
 }
 
-/* Section rhythm: consistent breathing room top/bottom of inner content */
+/* Section rhythm */
 .section>.wrap>*:first-child{
   margin-top:0
 }
@@ -2221,7 +2417,7 @@ nav .btn-fill:hover{
   margin-bottom:4px
 }
 
-/* CTA optical centering: equal vertical rhythm above/below, consistent gap */
+/* CTA optical centering*/
 .btns{
   row-gap:14px
 }
@@ -2230,54 +2426,44 @@ nav .btn-fill:hover{
   margin-top:32px
 }
 
-/* Image integration: consistent corner radius + crop discipline across grid */
+/* Image integration*/
 .media,.gphoto,.gfeature,.banner,.video-thumb,.oc-feature-media{
   border-radius:16px;
 }
 
-/* Optical balance: tighten oversized hero underline offset slightly */
+/* Optical balance*/
 .uline{
   text-underline-offset:6px
 }
 
-/* Testimonial block: balanced quote width for editorial feel */
+/* Testimonial block */
 .testi .q{
   max-width:62ch;
   margin-left:auto;
   margin-right:auto
 }
 
-/* Footer mission line: comfortable measure */
 .foot-mission{
   max-width:36ch;
   line-height:1.7
 }
 
-/* Stats: consistent optical centering of number+label pair */
+
 .stat{
   display:flex;
   flex-direction:column;
   align-items:center
 }
 
-/* ── BODY COPY ALIGNMENT (unified) ────────────────────────────────
-   Every long-form paragraph on the site — split-section copy, article
-   text, two-column body copy, card text — now reads the same way the
-   "Big Idea" home section always did: left-aligned, generous line-
-   height, capped measure. Justify is no longer used anywhere; in
-   narrow columns it produced uneven word-gaps, and it was the source
-   of most of the inconsistency between sections. One rule, used
-   everywhere, is what makes a page feel premium instead of patched
-   together. */
 .article p,
 .oc-cols p,
 .ccard p{
   text-align: left;
 }
 
-/* ── UX AUDIT FIXES ─────────────────────────────────────────── */
 
-/* 1. ON-CAMPUS FEATURE IMAGE — fix collapsed height in .media.oc-feature-media */
+
+/* 1. ON-CAMPUS FEATURE IMAGE */
 .oc-feature-media {
   position: relative;
   display: block;
@@ -2301,13 +2487,13 @@ nav .btn-fill:hover{
   .oc-feature-media { aspect-ratio: 4/3; }
 }
 
-/* 2. BODY COPY — left-aligned everywhere, by default */
+/* 2. BODY COPY */
 p {
   text-align: left;
 }
 .foot-ack { text-align: center; }
 
-/* 3. OC-FEATURE "What it actually looks like" — centred layout, justified copy */
+/* 3. OC-FEATURE "What it actually looks like" */
 .oc-feature {
   max-width: 820px;
   margin-left: auto;
@@ -2337,19 +2523,18 @@ p {
   .oc-cols { column-count: 1; }
 }
 
-/* 4. OC-ARTICLE CTA — centre the "See the impact" button */
+/* 4. OC-ARTICLE CTA — "See the impact" button */
 .oc-article .btns {
   justify-content: center;
   margin-top: 32px;
 }
 
-/* 5. ARTICLE body text — left-aligned, consistent with the rest of the site */
+/* 5. ARTICLE body text */
 .article p {
   text-align: left;
 }
 
-/* 6. FONT SIZE CONSISTENCY */
-/* Resolve dual h1 definitions: single authoritative base */
+
 h1 {
   font-size: clamp(34px, 5.5vw, 62px);
   font-weight: 800;
@@ -2375,7 +2560,7 @@ h2 {
   font-size:14px;
   font-weight:600;
 }
-/* .lede subheading — sits between h2 and lead, keep 22–24px range */
+
 .lede {
   font-size: 22px;
   font-weight: 700;
@@ -2384,18 +2569,18 @@ h2 {
   margin-bottom: 6px;
 }
 
-/* 7. GLOBAL BTNS — always centred */
+/* GLOBAL BTNS*/
 .btns {
   justify-content: center;
 }
 
-/* 8. CHECKLIST items — left-align, no justify */
+/* CHECKLIST items*/
 .checklist li {
   text-align: left;
   hyphens: none;
 }
 
-/* 9. lead paragraphs — never justify, always centred where inside center-head */
+/* 9. lead paragraphs */
 .lead {
   text-align: inherit;
   hyphens: none;
@@ -2403,14 +2588,6 @@ h2 {
 .center-head .lead {
   text-align: center;
 }
-
-/* ── END UX AUDIT FIXES ──────────────────────────────────────── */
-
-/* ════════════════════════════════════════════════════════════════
-   LAYOUT SYSTEM v2 — grid, spacing scale, alignment discipline
-   This block is intentionally last so it wins the cascade over the
-   patched rules above without deleting them. See accompanying spec.
-   ════════════════════════════════════════════════════════════════ */
 
 :root{
   /* 12-column grid */
@@ -2434,15 +2611,13 @@ h2 {
   --radius:16px;
 }
 
-/* All section content sits on the same 12-col grid: same max-width,
-   same side gutters, everywhere, no per-section overrides. */
 .wrap{
   max-width:var(--grid-max);
   padding-left:var(--grid-gutter);
   padding-right:var(--grid-gutter)
 }
 
-/* Section rhythm: large gap between sections, identical top+bottom */
+/* Section rhythm */
 .section{
   padding-top:var(--space-section);
   padding-bottom:var(--space-section)
@@ -2455,7 +2630,7 @@ h2 {
   }
 }
 
-/* Intro block rhythm: eyebrow → heading → lead, tight + consistent everywhere */
+/* Intro block rhythm */
 .center-head{
   max-width:var(--text-max)
 }
@@ -2473,16 +2648,13 @@ h2 {
   margin-bottom:var(--space-tight)
 }
 
-/* Content block sits at a fixed, predictable distance below the intro block
-   across every section — this is the "supporting paragraph → content block"
-   beat the spec calls for. */
+
 .oc-feature,.article,.blocks,.cards,.qgrid,.video-grid,.gallery,.contact-grid,
 .split,.figures,.checklist,.banner{
   margin-top:var(--space-block)!important
 }
 
-/* Text column width cap: long-form copy reads at a fixed measure regardless
-   of how wide the viewport is. Full-bleed is reserved for media only. */
+
 .article,.oc-cols,.oc-feature .oc-cols{
   max-width:var(--text-max)
 }
@@ -2492,7 +2664,7 @@ h2 {
   margin-right:auto
 }
 
-/* 12-column grid utility classes (used by .split and feature media) */
+/* 12-column grid utility classes */
 .grid-12{
   display:grid;
   grid-template-columns:repeat(12,1fr);
@@ -2516,8 +2688,7 @@ h2 {
   }
 }
 
-/* Component consistency: every card/block shares one radius + padding rule,
-   overriding any one-off radius values introduced in earlier passes. */
+
 .card,.block,.qcard,.ccard,.video-card,.media,.gphoto,.gfeature,.banner,.oc-feature-media{
   border-radius:var(--radius);
 }
@@ -3179,7 +3350,7 @@ h2 {
     column-count: 1;        /* Drops down to a clean single column on mobile */
   }
   .news-columns p {
-    font-size: 17px;        /* Slightly scales down text on small mobile screens for comfort */
+    font-size: 17px;        
   }
 }
 
@@ -3401,7 +3572,7 @@ html, body {
 
 @media (max-width: 768px) {
   .marquee-track {
-    animation: none !important; /* I-off ang automatic CSS scroll sa mobile */
+    animation: none !important; 
     display: flex;
     will-change: transform;
   }
@@ -3510,148 +3681,352 @@ html, body {
   filter: brightness(1.20);
 }
 
-/* Undangon ang automatic movement samtang gi-swipe sa user */
+
 .marquee.is-swiping .marquee-track {
   animation-play-state: paused !important;
   cursor: grabbing;
 }
 
-/*TESTIMONIAL SECTION*/
+/* ==========================================================================
+   TESTIMONIAL SECTION CORE CAROUSEL
+   ========================================================================== */
 
-/*--TESTIMONIAL TQ TEXT--*/
-/* Carousel Container Wrapper */
+.testi-section {
+  position: relative;
+  background-color: var(--accent-deep);
+  padding: 80px 0;
+  overflow: visible;
+}
+
+.testi-carousel-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: visible;
+}
+
 .testi-carousel-container {
   position: relative;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  overflow: hidden; 
-  padding: 40px 20px; /* Gidugangan og sideway padding aron dili maputol ang card shadows */
+  padding: 80px 20px 0px 20px;
+  height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible !important;
 }
 
 .testi-track {
-  display: flex;
-  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-  will-change: transform;
-  width: max-content;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d; 
+  perspective: 2000px; 
 }
 
+/* --- Parent Card Containers --- */
 .testi-card-item {
-  width: 600px; 
-  max-width: 75vw;
-  margin: 0 15px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-top: 4px solid var(--gold);
-  border-radius: 20px;
-  position: relative; 
-  padding: 35px; /* Gi-unify ang padding */
-  text-align: left; /* Gi-left align para mas nindot tan-awon ang profile headers */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 560px; 
+  max-width: 85vw;
+  margin-top: -200px; 
+  margin-left: -320px; 
+  overflow: visible !important; 
+  filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.20));
   
-  transform: scale(0.85); 
-  opacity: 0.4;
-  transition: transform 0.6s ease, opacity 0.6s ease, background-color 0.4s;
+  
+  transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1), 
+              opacity 0.65s cubic-bezier(0.4, 0, 0.2, 1), 
+              z-index 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, opacity;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+
+.testi-card-item.active {
+  pointer-events: auto;
+  opacity: 1;
+  z-index: 30 !important;
+  filter: drop-shadow(0 25px 55px rgba(0, 0, 0, 0.35));
 }
 
 /* ==========================================================================
-   ADDED/FIXED VISIBILITY STYLES FOR USER PROFILE & UNIVERSITY LOGO
+   MAIN CARD SHAPE & INSETS
    ========================================================================== */
 
-/* 1. Header Wrapper */
-.testi-profile-header {
-  display: flex;
-  flex-direction: column;
-  gap: 15px; 
-  margin-bottom: 25px;
+.testi-card-shape {
+  position: relative;
   width: 100%;
+  height: auto;
+  min-height: 290px;
+  background: #ffffff; 
+  border-radius: 40px 40px 50px 0; 
+  padding: 50px 110px 45px 50px; 
+  box-sizing: border-box;
+  text-align: left;
+  overflow: visible !important;
+  display: block;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 45px 100%, 0 calc(100% - 45px));
 }
 
-/* Flex layout para sa Avatar ug Pangalan*/
-.profile-top-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+/* ==========================================================================
+   GEOMETRIC SHARP DOUBLE QUOTES (SAFE & LOWERED)
+   ========================================================================== */
+
+.top-quote-mark {
+  position: absolute;
+  top: -30px; 
+  right: 140px;
+  width: 96px;
+  height: 72px;
+  pointer-events: none;
+  z-index: 35; 
+  display: block;
+  filter: 
+    drop-shadow(5px 0 0 #ffffff) 
+    drop-shadow(-5px 0 0 #ffffff) 
+    drop-shadow(0 5px 0 #ffffff) 
+    drop-shadow(0 -5px 0 #ffffff);
 }
 
-/* 2. User Container */
-.user-container {
-  margin-top: 20px;
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  overflow: hidden;
-  background: rgba(255, 255, 255, 0.1);
-  flex-shrink: 0; 
-}
-
-.user-avatar-img {
+.top-quote-mark svg {
   width: 100%;
   height: 100%;
-  object-fit: cover; 
   display: block;
 }
 
-/* 3. User Details */
-.user-details {
+/* ==========================================================================
+   UNIVERSITY GRAPHIC INTERACTIVE SLIDE-OUT RIBBON (DYNAMICALLY SIZED)
+   ========================================================================== */
+
+.uni-ribbon {
+  position: absolute;
+  right: -5px;
+  top: 40px;
+  width: auto;
+  min-width: 54px;            
+  max-width: 54px;            
+  height: auto;               
+  min-height: 54px;           
   display: flex;
-  flex-direction: column;
-  text-align: left;
+  flex-direction: row;        
+  align-items: center;
+  justify-content: flex-start;
+  z-index: 999 !important;    
+  pointer-events: auto !important;
+  box-sizing: border-box;
+  padding: 8px 10px;          
+  border-radius: 40px 0 0 40px; 
+  transition: max-width 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+              border-radius 0.3s ease,
+              padding 0.3s ease;
+  overflow: visible;          
+  cursor: pointer;
 }
 
-.user-name {
-  font-size: 25px;
-  font-weight: 700;
-  color: #fff;
-}
-
-.user-details .title {
-  font-size: 15px;
-  color: rgba(255, 255, 255, 0.6);
-  margin-top: 2px;
-}
-
-/* 4. Logo Wrapper*/
-.logo-wrapper {
+/* PULL TAB/HANDLE */
+.uni-ribbon::before {
+  content: '◀';               
+  position: absolute;
+  left: -8px;                 
+  top: 50%;                   
+  transform: translateY(-50%);
+  width: 12px;                
+  height: 24px;               
+  background: inherit;        
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 6px;             
   display: flex;
   align-items: center;
-  gap: 13px;
-  background: rgba(255, 255, 255, 0.03); 
-  border-radius: 10px;
-  width: 70%; 
+  justify-content: flex-start;
+  padding-left: 2px;
+  box-sizing: border-box;
+  border-radius: 12px 0 0 12px; 
+  box-shadow: -3px 1px 4px rgba(0, 0, 0, 0.15);
+  z-index: 1000 !important;   
+  pointer-events: auto !important; 
+  transition: opacity 0.25s ease, transform 0.25s ease, left 0.25s ease;
+  animation: pulseHandle 2s infinite ease-in-out;
 }
 
-.logo-img {
-  width: 50px;
-  height: 50px;
-  object-fit: contain; 
+/* ACTIVE STATE ON DEMAND */
+.uni-ribbon:hover,
+.uni-ribbon.expanded {
+  max-width: 350px;           
+  border-radius: 40px 0 24px 24px; 
+  padding: 8px 20px 8px 12px; 
 }
 
-/* 5. Uni Text Block */
-.text-block {
+.uni-ribbon:hover::before,
+.uni-ribbon.expanded::before {
+  opacity: 0;
+  left: 0;
+  transform: translateY(-50%) scaleX(0.5); 
+  pointer-events: none;       
+}
+
+/* UNIVERSITY ROUND WHITE RING */
+.uni-logo-ring {
+  width: 34px;
+  height: 34px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;             
+}
+
+.uni-logo-ring img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+/* HORIZONTAL TEXT CONTAINER BLOCK */
+.uni-text-block {
+  display: flex;
+  flex-direction: column;     
+  align-items: flex-start;    
+  justify-content: center;
+  gap: 2px;                  
+  white-space: nowrap;        
+  margin-left: 12px;          
+  flex-shrink: 0;             
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(15px);
+  transition: opacity 0.25s ease 0.05s, transform 0.25s ease 0.05s;
+}
+
+.uni-ribbon:hover .uni-text-block,
+.uni-ribbon.expanded .uni-text-block {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0);
+}
+
+/* TEXT STYLING rules */
+.uni-text-spotlight {
+  font-size: 11px;            
+  font-weight: 800;
+  color: #ffffff;            
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  line-height: 1.2;
+}
+
+.uni-text-subtext {
+  font-size: 9.5px;          
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85); 
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+}
+
+/* CREASE SHADOW */
+.uni-ribbon::after {
+  content: '';
+  position: absolute;
+  bottom: -10px; 
+  right: 0;      
+  width: 5px;    
+  height: 10px;   
+  background: rgba(0, 0, 0, 0.4); 
+  clip-path: polygon(100% 0, 0 0, 100% 100%); 
+  z-index: -2;
+}
+
+@keyframes pulseHandle {
+  0%, 100% { left: -8px; }
+  50% { left: -10px; }
+}
+
+/* ==========================================================================
+   USER IDENTITY NODES & METADATA
+   ========================================================================== */
+
+.testi-header-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 22px;
+}
+
+.avatar-double-ring {
+  position: relative;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.avatar-inner-ring {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  overflow: hidden;
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  background: rgba(0, 0, 0, 0.217);
+}
+
+.client-meta {
   display: flex;
   flex-direction: column;
-  line-height: 1.1; 
-  text-align: left;
 }
 
-.spotlight {
-  font-size: 200px; 
-  font-weight: 800; 
-  text-transform: uppercase;
-  color: var(--gold);
-  letter-spacing: 0.7px;
-  display: block;
+.client-name {
+  font-size: 22px;
+  font-weight: 800;
+  color: #111111;
+  line-height: 1.2;
 }
 
-.subtext {
-  font-size: 15px; 
-  color: rgba(255, 255, 255, 0.8);
-  margin-top: 5px; 
+.client-designation {
+  font-size: 13px;
+  font-weight: 600;
+  color: #718096;
+  margin-top: 4px;
 }
 
-/* ========================================================================== */
+.client-underline {
+  width: 35px;
+  height: 4px;
+  border-radius: 2px;
+  margin-top: 8px;
+}
 
-/* --- DESKTOP ARROW BUTTONS --- */
+.testi-card-shape .q {
+  font-size: 17px !important;
+  color: #4a5568 !important; 
+  font-weight: 500;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ==========================================================================
+   CAROUSEL CARDS NAV DIRECTIONS (ARROWS & DOTS)
+   ========================================================================== */
+
 .testi-arrow {
   display: none; 
   position: absolute;
@@ -3665,79 +4040,32 @@ html, body {
   border-radius: 50%;
   font-size: 24px;
   cursor: pointer;
-  z-index: 10;
+  z-index: 40; 
   align-items: center;
   justify-content: center;
-  transition: background 0.3s, border-color 0.3s, color 0.3s;
+  transition: all 0.3s ease;
 }
 
 .testi-arrow:hover {
-  background: var(--gold);
-  border-color: var(--gold);
-  color: var(--ink);
+  background: #f1c40f;
+  border-color: #f1c40f;
+  color: #000;
 }
 
-.prev-btn {
-  left: 20px;
-}
+.prev-btn { left: 20px; }
+.next-btn { right: 20px; }
 
-.next-btn {
-  right: 20px;
-}
-
-/* --- DESKTOP VIEW RESPONSIVENESS --- */
 @media (min-width: 769px) {
-  .testi-arrow {
-    display: flex; /* Pakit-on lang ang mga arrows kung desktop view */
-  }
-  .testi-carousel-container {
-    padding: 20px 20px;
-  }
-}
-
-.testi-card-item.active {
-  transform: scale(1);
-  opacity: 1;
-  background: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-  border-color: rgba(255, 255, 255, 0.3);
-}
-
-.testi-card-item .q {
-  font-size: clamp(18px, 2vw, 24px) !important;
-  color: #fff;
-  font-weight: 600;
-  line-height: 1.5;
-  margin-bottom: 24px;
-  position: relative;
-  z-index: 2;
-}
-
-.testi-card-item .who {
-  font-size: 14px;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.testi-card-item .who b {
-  color: var(--gold);
-}
-
-.testi-card-item .bigmark {
-  font-size: 80px;
-  line-height: 1;
-  position: absolute;
-  top: 10px;
-  left: 20px;
-  opacity: 0.15;
-  font-family: serif;
+  .testi-arrow { display: flex; }
 }
 
 .dots.center {
   display: flex;
-  gap: 10px;
+  gap: 15px;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 15px; 
+  position: relative;
+  z-index: 40;
 }
 
 .dots .dot {
@@ -3748,285 +4076,421 @@ html, body {
   border: none;
   cursor: pointer;
   padding: 0;
-  transition: background 0.3s, transform 0.3s;
-}
-
-.dots .dot:hover {
-  background: rgba(255, 255, 255, 0.5);
+  transition: all 0.3s ease;
 }
 
 .dots .dot.active {
   background: #f1c40f; 
-  transform: scale(1.2);
+  transform: scale(1.25);
 }
 
-/* Responsive adjustments for mobile screens */
+/* ==========================================================================
+   MOBILE VIEW OPTIMIZATIONS & FIXES (Screens 768px and below)
+   ========================================================================== */
 @media (max-width: 768px) {
+  .testi-carousel-container {
+    height: 380px;            
+    padding: 60px 10px 0px 10px;
+  }
+
   .testi-card-item {
-    width: 290px;
-    margin: 0 10px;
-    padding: 24px;
+    width: 320px;
+    margin-left: -160px;
+    margin-top: -190px;       
   }
-  .testi-card-item .q {
-    font-size: 16px !important;
+
+  .testi-card-shape {
+    padding: 35px 75px 35px 30px;
+    min-height: 280px;
+    border-radius: 25px 25px 35px 0;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 30px 100%, 0 calc(100% - 30px));
+  }
+
+  .top-quote-mark {
+    right: 60px;
+    top: -22px;
+    width: 68px;
+    height: 52px;
+    filter: 
+      drop-shadow(4px 0 0 #ffffff) 
+      drop-shadow(-4px 0 0 #ffffff) 
+      drop-shadow(0 4px 0 #ffffff) 
+      drop-shadow(0 -4px 0 #ffffff);
+  }
+
+  /* RIBBON CLOSED STATE FOR MOBILE */
+  .uni-ribbon {
+    width: auto;
+    min-width: 44px;
+    max-width: 44px;           
+    height: auto;
+    min-height: 44px;
+    top: auto;
+    bottom: 12px;             
+    right: -5px;              
+    border-radius: 30px 0 0 30px;
+    padding: 5px;
+    overflow: visible;
+    transition: max-width 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease;
+  }
+
+  /* PULL HANDLE*/
+  .uni-ribbon::before {
+    display: flex !important; 
+    content: '◀';               
+    position: absolute;
+    left: -7px;                 
+    top: 50%;                   
+    transform: translateY(-50%);
+    width: 10px;                
+    height: 20px;               
+    background: inherit;        
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 5px;             
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 1px;
+    box-sizing: border-box;
+    border-radius: 10px 0 0 10px; 
+    box-shadow: -2px 1px 3px rgba(0, 0, 0, 0.15);
+    z-index: 1000 !important;   
+    pointer-events: auto !important; 
+    animation: pulseHandleMobile 2s infinite ease-in-out;
+    transition: opacity 0.2s ease, left 0.2s ease;
+  }
+
+  /* RIBBON EXPANDED STATE */
+  .uni-ribbon.expanded {
+    max-width: 270px;         
+    padding: 5px 15px 5px 8px;
+  }
+
+  .uni-ribbon.expanded::before {
+    opacity: 0;
+    left: 0;
+    pointer-events: none;
+  }
+
+  .uni-logo-ring {
+    width: 34px;
+    height: 34px;
+  }
+  .uni-logo-ring img {
+    width: 18px;
+    height: 18px;
+  }
+
+  .uni-text-block {
+    margin-left: 10px;
+    white-space: nowrap;      
+    opacity: 0;
+    transform: translateX(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .uni-ribbon.expanded .uni-text-block {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .uni-text-spotlight { font-size: 8px; }
+  .uni-text-subtext { font-size: 7.5px; }
+
+  .uni-ribbon::after {
+    bottom: -8px;
+    right: 0;
+    width: 5px;
+    height: 8px;
+  }
+
+  .avatar-double-ring { width: 55px; height: 55px; }
+  .avatar-inner-ring { width: 45px; height: 45px; }
+  .client-name { font-size: 17px; }
+  .client-designation { font-size: 11px; }
+
+  
+  .dots.center {
+    margin-top: 50px;         
+    position: relative;
+    z-index: 100;
   }
 }
 
-/* --- TESTI CAROUSEL ANIMATION--- */
-.testi-carousel-container.reveal {
-  opacity: 0;
-  transform: translateY(40px); 
-  transition: opacity 0.85s cubic-bezier(0.215, 0.610, 0.355, 1), 
-              transform 0.85s cubic-bezier(0.215, 0.610, 0.355, 1);
-  will-change: opacity, transform;
+@keyframes pulseHandleMobile {
+  0%, 100% { left: -7px; }
+  50% { left: -9px; }
 }
 
-.testi-carousel-container.reveal.in {
-  opacity: 1;
-  transform: translateY(0);
+/* ==========================================================================
+   GLOBAL VARIABLES & CONFIGURATION
+   ========================================================================== */
+:root {
+  /*COLOR PALETTE FOR TESTIMONIAL QCARDS*/
+  --color-gold: #e5b824;
+  --color-orange: #dc7928;
+  --color-red: #cc3b4d;
+  --color-pink: #b94487;
+  --color-purple: #7b4ca2;
+  --color-blue: #2b4689;
+
+  --card-bg: #ffffff;
+  --text-dark: #333333;
+  --text-muted: #666666;
+  --line-color: #eaeaea;
 }
 
-.testi-card-item.reveal {
-  opacity: 1 !important;
-  transform: none !important;
-  transition: none !important;
+/* Container for testimonial cards (3 columns on desktop) */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px 30px; 
+  width: 100%;
+  padding: 40px 20px;
+  box-sizing: border-box;
 }
 
-.dots.center.reveal {
-  opacity: 0;
-  transform: translateY(40px); 
-  transition: opacity 0.8s cubic-bezier(0.215, 0.610, 0.355, 1), 
-              transform 0.8s cubic-bezier(0.215, 0.610, 0.355, 1);
-}
-
-.dots.center.reveal.in {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-
-
-
-
-/*---Q-CARD---*/
-
-.testi-section .qcard {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 16px;
-  padding: 32px;
+/* ==========================================================================
+   BASE Q-CARD STRUCTURAL SETUP
+   ========================================================================== */
+.qcard-columns {
+  background: var(--card-bg);
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  position: relative;
+  padding: 0 24px 45px 24px; 
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  text-align: left;
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+  overflow: visible; 
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), 
+              box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-
-
-/* Container para sa mga testimonial cards */
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 columns sa desktop view */
-    gap: 20px;
-    width: 100%;
-    padding: 20px 0;
-    box-sizing: border-box;
+/* Hover dynamic micro-interaction */
+.qcard-columns:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
 }
 
-/* Estilo para sa bawat qcard para masigurong maayos ang hitsura */
-.qcard-columns {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-top: 4px solid var(--gold);
-    border-radius: 12px;
-    padding: 24px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    box-sizing: border-box;
-    width: 100%;
+/* ==========================================================================
+   DYNAMIC CURVED TOP HEADERS (Using CSS Clip-Path)
+   ========================================================================== */
+.qcard-columns::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 140px;
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  clip-path: ellipse(80% 65% at 50% 30%); 
+  z-index: 1;
 }
-.qcard-columns.active {
-  opacity: 1 !important;
-  transform: scale(1) !important; 
-  background: rgba(255, 255, 255, 0.14) !important;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3) !important;
-  border-color: rgba(255, 255, 255, 0.3) !important;
+
+/* Bag-ong Card Themes Assignment (Gi-map sa 6 ka colors) */
+.card-gold::before   { background-color: var(--color-gold); }
+.card-orange::before { background-color: var(--color-orange); }
+.card-red::before    { background-color: var(--color-red); }
+.card-pink::before   { background-color: var(--color-pink); }
+.card-purple::before { background-color: var(--color-purple); }
+.card-blue::before   { background-color: var(--color-blue); }
+
+/* Decorative Floating Quote Vector */
+.quote-decor-icon {
+  position: absolute;
+  top: 20px;
+  left: 100px;
+  width: 32px;
+  height: 32px;
+  color: rgba(255, 255, 255, 0.35);
   z-index: 2;
 }
 
-/* Quote Text*/
-.qcard-columns .quote-text {
-  font-size: 20px !important; 
-  font-weight: 500 !important;
-  line-height: 1.6 !important;
-  color: var(--paper) !important;
-  font-style: italic !important;
-  margin: 0 0 24px 0 !important;
-  padding: 0 !important;
-  display: block !important;
-  text-align: left !important;
-}
-
-.qcard-columns .quote-text::before {
-  content: "“";
-  display: inline-block;
-  font-family: "Georgia", serif;
-  font-size: 2em;
-  line-height: 0;
-  vertical-align: -0.1em;
-  margin-right: 4px;
-  color: var(--gold-deep);
-}
-
-.qcard-columns .quote-text::after {
-  content: "”";
-  display: inline-block;
-  font-family: "Georgia", serif;
-  font-size: 2em;
-  line-height: 0;
-  vertical-align: -0.35em;
-  margin-left: 2px;
-  color: var(--gold-deep); 
-}
-
-/* Profile / Author Header Alignments */
+/* ==========================================================================
+   AVATAR / HEADSHOT COMPONENTS
+   ========================================================================== */
 .qcard-profile-header {
+  position: relative;
+  z-index: 2;
+  margin-top: 40px;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.user-container {
+  width: 102px;
+  height: 102px;
+  border-radius: 50%;
+  background: var(--card-bg); /* Outer white structural border boundary */
   display: flex;
   align-items: center;
-  justify-content: flex-start; 
-  gap: 14px;
-  width: 100%;
-  padding-left: 0 !important;
-  margin-top: 5px
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.user-avatar-container {
-  background: rgba(255, 255, 255, 0.1);
-  width: 48px;
-  height: 48px;
+.inner-ring {
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
-  overflow: hidden; 
-  flex-shrink: 0;
+  overflow: hidden;
+  border: 4px solid transparent;
 }
+
+/* Inner Rings Border Colors matched per Theme */
+.card-gold .inner-ring   { border-color: var(--color-gold); }
+.card-orange .inner-ring { border-color: var(--color-orange); }
+.card-red .inner-ring    { border-color: var(--color-red); }
+.card-pink .inner-ring   { border-color: var(--color-pink); }
+.card-purple .inner-ring { border-color: var(--color-purple); }
+.card-blue .inner-ring   { border-color: var(--color-blue); }
 
 .user-avatar-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  background: #1c1b2256;
 }
 
+/* ==========================================================================
+   PROFILE & TYPOGRAPHY LOGIC
+   ========================================================================== */
 .profile-details {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start; 
-  gap: 2px !important; 
-  text-align: left; 
+  z-index: 2;
+  width: 100%;
+  margin-bottom: 5px;
 }
 
 .profile-user-name {
-  font-size: 20px !important;
-  font-weight: 700;
-  color: var(--paper) !important; 
-  line-height: 1.2;
+  display: block;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 4px;
 }
 
 .profile-title {
-  font-size: 12px !important;
-  font-style:oblique; 
+  display: block;
+  font-size: 12px;
   font-weight: 600;
-  color: var(--line) !important; 
-  line-height: 1.2;
-  margin-bottom: 0 !important;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
 }
 
-/* --- COHESIVE Q-CARD UNIVERSITY LOGO --- */
+/* Modern Minimalist Card Divider */
+.card-divider {
+  border: none;
+  height: 1px;
+  width: 75%;
+  background-color: var(--line-color);
+  margin: 16px 0;
+}
+
+/* Main Body Quote Layout */
+.quote-text {
+  font-style: italic;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin: 0 0 35px 0;
+  padding: 0 8px;
+  flex-grow: 1; 
+}
+
+/* ==========================================================================
+   BOTTOM FLOATING UNIVERSITY BADGE (Capsule Layout)
+   ========================================================================== */
 .uni-logo-wrapper {
+  position: absolute;
+  bottom: -24px; 
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--card-bg);
+  padding: 8px 22px;
+  border-radius: 50px;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
-  gap: 0.6em;
-  max-width: 100%;
-  justify-content: flex-start;
-  background: rgba(0, 0, 0, 0.023);
-  padding: 6px 12px;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  margin: 0 auto 20px auto;
+  gap: 12px;
+  z-index: 10;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  max-width: 92%;
+  box-sizing: border-box;
+  white-space: nowrap;
 }
 
 .uni-logo-img {
-  max-height: 35px;
-  width: auto;
+  width: 26px;
+  height: 26px;
   object-fit: contain;
+  flex-shrink: 0;
 }
 
-.uni-text-block {
+.text-block {
   display: flex;
   flex-direction: column;
-  line-height: 1.2;
+  text-align: left;
+  line-height: 1.25;
 }
 
 .uni-spotlight {
-  color: var(--gold);
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 800;
+  color: var(--text-dark);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .uni-subtext {
-  color: var(--lav);
-  font-size: 11px;
-  opacity: 115;
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text-muted);
 }
 
-.card-divider {
-  border: none;
-  height: 3px; 
-  width: 100%;
-  background: linear-gradient(
-    90deg, 
-    rgba(251, 192, 45, 0) 0%, 
-    rgba(251, 192, 45, 0.8) 20%, 
-    rgba(251, 192, 45, 0.4) 70%, 
-    rgba(251, 192, 45, 0) 100%
-  );
-  opacity: 0.85; 
-  margin-bottom: 20px;
-  flex-shrink: 0; 
+/* Optional Colored Accent Highlights inside the Bottom Spotlights */
+.card-gold .uni-spotlight   { color: var(--color-gold); }
+.card-orange .uni-spotlight { color: var(--color-orange); }
+.card-red .uni-spotlight    { color: var(--color-red); }
+.card-pink .uni-spotlight   { color: var(--color-pink); }
+.card-purple .uni-spotlight { color: var(--color-purple); }
+.card-blue .uni-spotlight   { color: var(--color-blue); }
+
+
+/* ==========================================================================
+   RESPONSIVE LAYOUT RESPONSIVENESS (Media Queries)
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 45px 24px;
+  }
 }
 
-/* --- MOBILE RESPONSIVENESS BREAKPOINTS --- */
 @media (max-width: 768px) {
-    .grid-container {
-
-        grid-template-columns: 1fr; 
-        gap: 16px; 
-        padding: 10px 0;
-    }
-
-    .qcard-columns {
-        width: 100%; 
-        max-width: 100%;
-        padding: 18px; 
-    }
-    
-
-    .uni-logo-wrapper {
-        flex-wrap: wrap; 
-        gap: 8px;
-    }
+  .grid-container {
+    grid-template-columns: 1fr;
+    gap: 50px 0; 
+    padding: 30px 15px;
+  }
+  
+  .uni-logo-wrapper {
+    max-width: 95%;
+    padding: 8px 16px;
+  }
 }
 
-/* --- Q-CARD COLUMNS ANIMATION --- */
-
+/* ==========================================================================
+   SCROLL REVEAL ANIMATION STATES
+   ========================================================================== */
 .qcard-columns.reveal {
   opacity: 0;
-  transform: translateY(40px); 
-  transition: opacity 0.8s cubic-bezier(0.215, 0.610, 0.355, 1), 
-              transform 0.8s cubic-bezier(0.215, 0.610, 0.355, 1);
+  transform: translateY(30px);
+  transition: opacity 0.6s cubic-bezier(0.215, 0.610, 0.355, 1), 
+              transform 0.6s cubic-bezier(0.215, 0.610, 0.355, 1);
 }
 
 .qcard-columns.reveal.in {

@@ -213,10 +213,9 @@ document.getElementById('enquiryForm').addEventListener('submit', function(e) {
 });
 
 
-// --- TESTIMONIALS CAROUSEL ---
+// --- EXACT REPLICATION 3D TESTIMONIAL SLIDER MODULE ---
 
 if (document.getElementById('testiTrack')) {
-  // 1. Gi-update ang array aron masudlan sa gikinahanglan nga image ug university text structures
   var quotes = [
     { 
       t: "The energy and activities truly helped ease nerves and build a sense of community from day one. The next morning, you could tell they had found someone to connect to.", 
@@ -224,8 +223,9 @@ if (document.getElementById('testiTrack')) {
       r: "Senior Coordinator for Orientation",
       avatar: "user icon/icon.png",
       logo: "Testimonials/univ logo/UMSD.png",
-      uniSpotlight: "University",
-      uniSubtext: "of Minnesota School of Dentistry"
+      uniTextSpotlight: "University of Minnesota",
+      uniTextSubtext: "School of Dentistry",
+      color: "#b94487"
     },
     { 
       t: "The best part of welcome week was Playfair. It helped our students meet people they're still friends with.", 
@@ -233,8 +233,9 @@ if (document.getElementById('testiTrack')) {
       r: "Director of First-Year Experience",
       avatar: "user icon/icon.png",
       logo: "Testimonials/univ logo/SC.png",
-      uniSpotlight: "Simpson",
-      uniSubtext: "College"
+      uniTextSpotlight: "Simpson",
+      uniTextSubtext: "College",
+      color: "#7b4ca2"
     },
     { 
       t: "We brought Playfair back after COVID as the intentional social interaction our students needed. Years later, it's the best thing we do for them.", 
@@ -242,8 +243,9 @@ if (document.getElementById('testiTrack')) {
       r: "Associate Director for Major Events & Programs",
       avatar: "user icon/icon.png",
       logo: "Testimonials/univ logo/UCON.png",
-      uniSpotlight: "University",
-      uniSubtext: "of Connecticut"
+      uniTextSpotlight: "University",
+      uniTextSubtext: "of Connecticut",
+      color: "#2b4689"
     },
     { 
       t: "Playfair was a wonderful foundation for our first-year students. They had a blast and were still talking about it that evening.", 
@@ -251,8 +253,9 @@ if (document.getElementById('testiTrack')) {
       r: "Coordinator for Community Engagement",
       avatar: "user icon/icon.png",
       logo: "Testimonials/univ logo/RC.png",
-      uniSpotlight: "Ramapo",
-      uniSubtext: "College"
+      uniTextSpotlight: "RAMAPO",
+      uniTextSubtext: "College",
+      color: "#cc3b4d"
     },
     { 
       t: "Everyone I talked to loved Playfair. It set the exact tone we needed for the start of the year. We can't wait to bring you back next year.", 
@@ -260,76 +263,111 @@ if (document.getElementById('testiTrack')) {
       r: "Assistant Dean for Student Engagement",
       avatar: "user icon/icon.png",
       logo: "Testimonials/univ logo/KU.jpg",
-      uniSpotlight: "King",
-      uniSubtext: "University"
+      uniTextSpotlight: "KING",
+      uniTextSubtext: "University",
+      color: "#dc7928"
     }
   ];
 
   var N = quotes.length;
-  var qi = 3; 
+  var qi = 0; 
   var containerEl = document.getElementById('testiCarouselContainer');
   var trackEl = document.getElementById('testiTrack');
   var dotsEl = document.getElementById('tqDots');
   
-  var isDragging = false;
   var startX = 0;
-  var currentTranslate = 0;
-  var prevTranslate = 0;
-  var animationID = 0;
-  var startY = 0;
-  var isScrollingVertical = false;
+  var moveX = 0;
+  var isDragging = false;
 
   function initCarousel() {
     trackEl.innerHTML = '';
     
-    var extendedQuotes = [];
-    
-    // Ang cloning functionality para sa infinite layout
-    extendedQuotes.push(quotes[N - 3]);
-    extendedQuotes.push(quotes[N - 2]);
-    extendedQuotes.push(quotes[N - 1]);
-    
-    quotes.forEach(function(q) { extendedQuotes.push(q); });
-    
-    extendedQuotes.push(quotes[0]);
-    extendedQuotes.push(quotes[1]);
-    extendedQuotes.push(quotes[2]);
-
-    // 2. Gi-update ang HTML structure dinhi aron ma-visible ang tanan nimong gipangayo nga classes
-    extendedQuotes.forEach(function (q) {
+    quotes.forEach(function (q) {
       var card = document.createElement('div');
       card.className = 'testi-card-item';
+      
       card.innerHTML = `
-        <div class="testi-profile-header">
-          <div class="profile-top-row">
-            <div class="user-container">
-              <img src="${q.avatar}" alt="${q.w}" class="user-avatar-img">
-            </div>
-            <div class="user-details">
-              <span class="user-name">${q.w}</span>
-              <span class="title">${q.r}</span>
+      <div class="top-quote-mark" style="color: ${q.color};">
+        <svg viewBox="0 0 110 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M48.2 40.5C48.2 16.2 34.6 0 10.5 0C28.4 18.3 30.2 29.8 10.5 29.8C1.2 29.8 0 40.5 0 54.3C0 65.8 9 72 20.3 72C35.7 72 48.2 58.7 48.2 40.5Z" fill="currentColor"/>
+          <path d="M107.2 40.5C107.2 16.2 93.6 0 69.5 0C87.4 18.3 89.2 29.8 69.5 29.8C60.2 29.8 59 40.5 59 54.3C59 65.8 68 72 79.3 72C94.7 72 107.2 58.7 107.2 40.5Z" fill="currentColor"/>
+        </svg>
+      </div>
+      
+      <div class="testi-card-shape">
+        <div class="testi-header-row">
+          <div class="avatar-double-ring">
+            <div class="avatar-inner-ring" style="border-color: ${q.color};">
+              <img src="${q.avatar}" alt="${q.w}" class="avatar-img">
             </div>
           </div>
-          <div class="logo-wrapper">
-            <img src="${q.logo}" alt="${q.uniSubtext} Logo" class="logo-img">
-            <div class="uni-text-block">
-              <span class="uni-spotlight">${q.uniSpotlight}</span>
-              <span class="uni-subtext">${q.uniSubtext}</span>
-            </div>
+          <div class="client-meta">
+            <span class="client-name">${q.w}</span>
+            <span class="client-designation">${q.r}</span>
+            <div class="client-underline" style="background-color: ${q.color};"></div>
           </div>
         </div>
-        <div class="bigmark">“</div>
+        
         <p class="q">${q.t}</p>
+        
+        <div class="uni-ribbon">
+          <div class="uni-logo-ring">
+            <img src="${q.logo}" alt="${q.uniTextSpotlight} Logo" class="logo-ring-img">
+          </div>
+          <div class="uni-text-block"> 
+            <span class="uni-text-spotlight">${q.uniTextSpotlight}</span>
+            <span class="uni-text-subtext">${q.uniTextSubtext}</span>
+          </div>
+        </div>
+      </div>
       `;
+      
+      var ribbonEl = card.querySelector('.uni-ribbon');
+      if (ribbonEl) {
+        ribbonEl.style.background = q.color;
+        
+        var toggleRibbon = function(e) {
+          e.stopPropagation(); 
+          e.preventDefault();  
+          
+          if (ribbonEl.classList.contains('expanded')) {
+            ribbonEl.classList.remove('expanded');
+          } else {
+            document.querySelectorAll('.uni-ribbon').forEach(function(r) {
+              r.classList.remove('expanded');
+            });
+            ribbonEl.classList.add('expanded');
+          }
+        };
+
+        ribbonEl.addEventListener('touchend', toggleRibbon, { passive: false });
+        ribbonEl.addEventListener('click', function(e) {
+          if (e.pointerType === 'touch') return; 
+          toggleRibbon(e);
+        });
+      }
+      
       trackEl.appendChild(card);
     });
     
-    qi = 3; 
-    
+    qi = 0; 
     renderDots();
-    trackEl.style.transition = 'none';
-    updateCarouselPosition(); 
     setupArrowButtons();
+    setupDragInteractions();
+
+    if ('IntersectionObserver' in window) {
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            setTimeout(function() { updateCarouselPosition(); }, 100);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.05 });
+      observer.observe(containerEl);
+    } else {
+      setTimeout(updateCarouselPosition, 250);
+    }
   }
 
   function renderDots() {
@@ -337,11 +375,10 @@ if (document.getElementById('testiTrack')) {
     dotsEl.innerHTML = '';
     quotes.forEach(function (_, i) {
       var b = document.createElement('button');
-      b.className = 'dot' + ((i + 3) === qi ? ' active' : '');
+      b.className = 'dot' + (i === qi ? ' active' : '');
       b.setAttribute('aria-label', 'Quote ' + (i + 1));
       b.onclick = function () {
-        qi = i + 3;
-        trackEl.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)';
+        qi = i;
         updateCarouselPosition();
         updateActiveDot();
       };
@@ -352,158 +389,120 @@ if (document.getElementById('testiTrack')) {
   function updateActiveDot() {
     if (!dotsEl) return;
     var dots = dotsEl.querySelectorAll('.dot');
-    var realIndex = (qi - 3 + N) % N;
-
     dots.forEach(function(dot, idx) {
-      dot.classList.toggle('active', idx === realIndex);
+      dot.classList.toggle('active', idx === qi);
     });
   }
 
   function setupArrowButtons() {
     var prevBtn = document.getElementById('testiPrevBtn');
     var nextBtn = document.getElementById('testiNextBtn');
-
-    if (prevBtn) {
-      prevBtn.onclick = function(e) {
-        e.stopPropagation(); 
-        navigateCarousel(-1);
-      };
-    }
-
-    if (nextBtn) {
-      nextBtn.onclick = function(e) {
-        e.stopPropagation();
-        navigateCarousel(1);
-      };
-    }
+    if (prevBtn) prevBtn.onclick = function(e) { e.stopPropagation(); navigateCarousel(-1); };
+    if (nextBtn) nextBtn.onclick = function(e) { e.stopPropagation(); navigateCarousel(1); };
   }
 
   function navigateCarousel(direction) {
-    qi += direction;
-    trackEl.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)';
+    qi = (qi + direction + N) % N; 
     updateCarouselPosition();
     updateActiveDot();
   }
 
+  /* ==========================================================================
+     CINEMATIC LAYER SMOOTHING ENGINE: Wagtangon ang overlay flickering
+     ========================================================================== */
   function updateCarouselPosition() {
     var cards = document.querySelectorAll('.testi-card-item');
     if (!cards.length) return;
 
+    var isMobile = window.innerWidth <= 768;
+    var xOffset = isMobile ? 38 : 185; 
+    var zOffset = -180; 
+    var scaleFactor = 0.85;
+
     cards.forEach(function(card, idx) {
-      card.classList.toggle('active', idx === qi);
+      var diff = idx - qi;
+      
+      if (diff < -N / 2) diff += N;
+      if (diff > N / 2) diff -= N;
+
+      // 1. ACTIVE CENTER CARD (Primary View Layer)
+      if (diff === 0) {
+        card.style.transform = 'translate3d(0, 0, 0) scale(1)';
+        card.style.opacity = '1';
+        card.style.zIndex = '30';
+        card.style.pointerEvents = 'auto';
+        card.classList.add('active');
+      } 
+      // 2. NEXT CARD (Right Layer Behind)
+      else if (diff === 1) {
+        card.style.transform = `translate3d(${xOffset}px, 0, ${zOffset}px) scale(${scaleFactor})`;
+        card.style.opacity = '0.45';
+        card.style.zIndex = '10'; 
+        card.style.pointerEvents = 'none';
+        card.classList.remove('active');
+      } 
+      // 3. PREV CARD (Left Layer Behind)
+      else if (diff === -1) {
+        card.style.transform = `translate3d(${-xOffset}px, 0, ${zOffset}px) scale(${scaleFactor})`;
+        card.style.opacity = '0.45';
+        card.style.zIndex = '10'; 
+        card.style.pointerEvents = 'none';
+        card.classList.remove('active');
+      } 
+      // 4. TOTALLY INACTIVE OUT-OF-BOUND CARDS
+      else {
+        card.style.transform = `translate3d(0, 0, ${zOffset * 1.5}px) scale(${scaleFactor * scaleFactor})`;
+        card.style.opacity = '0';
+        card.style.zIndex = '1';
+        card.style.pointerEvents = 'none';
+        card.classList.remove('active');
+      }
     });
-
-    var containerWidth = containerEl.offsetWidth;
-    var activeCard = cards[qi];
-    if (!activeCard) return;
-    
-    var cardWidth = activeCard.offsetWidth;
-    var cardLeft = activeCard.offsetLeft;
-
-    currentTranslate = (containerWidth / 2) - (cardLeft + (cardWidth / 2));
-    prevTranslate = currentTranslate;
-
-    trackEl.style.transform = 'translateX(' + currentTranslate + 'px)';
   }
 
-  trackEl.addEventListener('transitionend', function() {
-    var cards = document.querySelectorAll('.testi-card-item');
-    
-    if (qi >= cards.length - 3) {
-      trackEl.style.transition = 'none';
-      qi = qi - N; 
-      void trackEl.offsetWidth; 
-      updateCarouselPosition();
-    } 
-    
-    else if (qi <= 2) {
-      trackEl.style.transition = 'none';
-      qi = qi + N; 
-      void trackEl.offsetWidth; 
-      updateCarouselPosition();
-    }
-  });
+  function setupDragInteractions() {
+    containerEl.addEventListener('touchstart', dragStart, { passive: true });
+    containerEl.addEventListener('touchmove', dragMove, { passive: true });
+    containerEl.addEventListener('touchend', dragEnd);
 
-  // --- MOUSE & TOUCH DRAG INTERACTION ---
-  containerEl.addEventListener('touchstart', dragStart, { passive: false });
-  containerEl.addEventListener('touchend', dragEnd);
-  containerEl.addEventListener('touchmove', dragMove, { passive: false });
-
-  containerEl.addEventListener('mousedown', dragStart);
-  containerEl.addEventListener('mouseup', dragEnd);
-  containerEl.addEventListener('mouseleave', dragEnd);
-  containerEl.addEventListener('mousemove', dragMove);
-
-  function getPositionX(event) {
-    return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+    containerEl.addEventListener('mousedown', dragStart);
+    containerEl.addEventListener('mousemove', dragMove);
+    containerEl.addEventListener('mouseup', dragEnd);
+    containerEl.addEventListener('mouseleave', dragEnd);
   }
 
-  function getPositionY(event) {
-    return event.type.includes('mouse') ? event.pageY : event.touches[0].clientY;
-  }
-
-  function dragStart(event) {
-    if (event.target.closest('.testi-arrow')) return; 
+  function dragStart(e) {
+    if (e.target.closest('.testi-arrow') || e.target.closest('.uni-ribbon')) return;
     isDragging = true;
-    isScrollingVertical = false;
-    startX = getPositionX(event);
-    startY = getPositionY(event);
-    trackEl.style.transition = 'none'; 
-    animationID = requestAnimationFrame(animation);
+    startX = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
   }
 
-  function dragMove(event) {
+  function dragMove(e) {
     if (!isDragging) return;
-    
-    var currentX = getPositionX(event);
-    var currentY = getPositionY(event);
-    var diffX = currentX - startX;
-    var diffY = currentY - startY;
-
-    if (!isScrollingVertical && Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 10) {
-      isScrollingVertical = true;
-      isDragging = false;
-      cancelAnimationFrame(animationID);
-      return;
-    }
-
-    if (event.cancelable) {
-      event.preventDefault();
-    }
-    
-    currentTranslate = prevTranslate + diffX;
+    var currentX = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+    moveX = currentX - startX;
   }
 
   function dragEnd() {
     if (!isDragging) return;
     isDragging = false;
-    cancelAnimationFrame(animationID);
-
-    var movedBy = currentTranslate - prevTranslate;
-
-    trackEl.style.transition = 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)';
-
-    if (movedBy < -40) {
-      qi++;
-    } else if (movedBy > 40) {
-      qi--;
-    }
-    
-    updateCarouselPosition();
-    updateActiveDot();
+    if (moveX < -50) navigateCarousel(1);
+    if (moveX > 50) navigateCarousel(-1);
+    moveX = 0;
   }
 
-  function animation() {
-    if (isDragging) {
-      trackEl.style.transform = 'translateX(' + currentTranslate + 'px)';
-      requestAnimationFrame(animation);
-    }
-  }
-
-  window.addEventListener('resize', function() {
-    trackEl.style.transition = 'none';
-    updateCarouselPosition();
-  });
-  
+  window.addEventListener('resize', updateCarouselPosition);
   initCarousel();
 }
+
+// GLOBAL OUTSIDE TOUCH/CLICK CLOSE
+var closeAllRibbons = function() {
+  document.querySelectorAll('.uni-ribbon.expanded').forEach(function (ribbon) {
+    ribbon.classList.remove('expanded');
+  });
+};
+document.addEventListener('click', closeAllRibbons);
+document.addEventListener('touchend', function(e) {
+  if (e.target.closest('.uni-ribbon')) return; 
+  closeAllRibbons();
+});
