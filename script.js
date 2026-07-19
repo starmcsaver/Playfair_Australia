@@ -225,7 +225,7 @@ if (document.getElementById('testiTrack')) {
       logo: "Testimonials/univ logo/UMSD.png",
       uniTextSpotlight: "University of Minnesota",
       uniTextSubtext: "School of Dentistry",
-      color: "#b94487"
+      color: "#7EA8D8"
     },
     { 
       t: "The best part of welcome week was Playfair. It helped our students meet people they're still friends with.", 
@@ -235,7 +235,7 @@ if (document.getElementById('testiTrack')) {
       logo: "Testimonials/univ logo/SC.png",
       uniTextSpotlight: "Simpson",
       uniTextSubtext: "College",
-      color: "#7b4ca2"
+      color: "#7EA8D8"
     },
     { 
       t: "We brought Playfair back after COVID as the intentional social interaction our students needed. Years later, it's the best thing we do for them.", 
@@ -245,7 +245,7 @@ if (document.getElementById('testiTrack')) {
       logo: "Testimonials/univ logo/UCON.png",
       uniTextSpotlight: "University",
       uniTextSubtext: "of Connecticut",
-      color: "#2b4689"
+      color: "#7EA8D8"
     },
     { 
       t: "Playfair was a wonderful foundation for our first-year students. They had a blast and were still talking about it that evening.", 
@@ -255,7 +255,7 @@ if (document.getElementById('testiTrack')) {
       logo: "Testimonials/univ logo/RC.png",
       uniTextSpotlight: "RAMAPO",
       uniTextSubtext: "College",
-      color: "#cc3b4d"
+      color: "#7EA8D8"
     },
     { 
       t: "Everyone I talked to loved Playfair. It set the exact tone we needed for the start of the year. We can't wait to bring you back next year.", 
@@ -265,7 +265,7 @@ if (document.getElementById('testiTrack')) {
       logo: "Testimonials/univ logo/KU.jpg",
       uniTextSpotlight: "KING",
       uniTextSubtext: "University",
-      color: "#dc7928"
+      color: "#7EA8D8"
     }
   ];
 
