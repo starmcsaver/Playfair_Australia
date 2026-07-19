@@ -2338,6 +2338,7 @@ nav .btn-fill:hover{
 
 .oc-feature .lede{
   margin-bottom:4px
+  
 }
 
 @media(max-width:760px){
@@ -3035,6 +3036,66 @@ h2 {
   .section {
     padding-top: 56px !important;
     padding-bottom: 56px !important;
+  }
+}
+
+/* ==========================================
+   MOBILE & RESPONSIVE FIXES (Dugang sa ubos)
+   ========================================== */
+
+/* 1. Fix sa Eyebrow nga typo (1000px to 14px desktop / 12px mobile) */
+.eyebrow {
+  font-size: 14px !important; 
+}
+
+/* 2. Target responsive action para sa mobile devices (768px paubos) */
+@media (max-width: 768px) {
+  
+  /* Pahuptan ang tibuok section ug wrapping */
+  .section {
+    padding: 50px 0 !important; /* Minusan ang dako nga padding sa desktop */
+  }
+  
+  /* CSS Override para sa mga inline style paragraphs nga naay 25px !important */
+  .section.lav p[style*="font-size: 25px !important"],
+  .section.lav p.lead {
+    font-size: 17px !important;   /* Sakto ug limpyo tan-awon sa phone */
+    text-align: left !important;   /* Dili na justified aron walay dagkong whitespace */
+    line-height: 1.6 !important;   /* Nindot nga space sa matag linya */
+    max-width: 100% !important;
+  }
+
+  /* Fix sa Grid layout nga .split (duha ka column sa desktop, himoong usa sa mobile) */
+  .split {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+
+  /* Hagpaton ang margins sa 'Where it fits' ug 'Led by practitioners' headers */
+  .section.lav .center-head {
+    margin-top: 40px !important;
+    padding: 0 15px !important;
+  }
+
+  /* responsive adjustments para sa mga text sa Headings sa sulod ani nga part */
+  .section.lav h2 {
+    font-size: 26px !important;
+    line-height: 1.2 !important;
+  }
+  
+  .section.lav h3.lede {
+    font-size: 20px !important;
+  }
+  
+  /* Fix sa multi-column section elements para dili mag-overap sa gamay nga screen */
+  .gallery {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .video-grid,
+  .figures,
+  .stats-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
   }
 }
 
