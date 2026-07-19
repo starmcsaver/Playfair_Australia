@@ -3079,6 +3079,20 @@ h2 {
   margin-top: 0;
 }
 
+/* Corporate Page Heading Alignment */
+.corporate-hero-heading {
+  text-align: left;
+  text-align-last: center;
+}
+
+/* Mobile View Adjustments */
+@media (max-width: 768px) {
+  .corporate-hero-heading {
+    text-align: center !important;
+    text-align-last: center !important;
+  }
+}
+
 /* ── TWO-COLUMN LAYOUTS: 80px GAP, TOPS ALIGNED ─────────────────── */
 
 /* .split: equal columns, 80px gap, tops aligned */
